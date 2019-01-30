@@ -16,7 +16,7 @@ Git is used for version control software
 * branches merged back into master after fully tested and ready for release
 * tags created for releases and version bumped
 * pull requests reviewed by other team members to check for conflict before merging branches
-* Git commit messages should have task number at the start of the message such as "81 blah"
+* Git commit messages should have task number at the start of the message such as ```git commit -m "81 blah"```
 
 ---
 ## Build Instructions

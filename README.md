@@ -3,26 +3,28 @@
 ---
 ## Organization and Naming Conventions
 * Class Names: UpperCamelCase
-* Variables: snake_case
-* css: lowercase
+* Method/Functions: Upper\_Snake\_Case
+* Variables: snake\_case
+* CSS: lowercase
 * Directories: UpperCamel
 * Files: Upper\_Snake
-* boolean vars: snake_case\_b with underscore b for bool flag
+* Boolean vars: snake\_case\_b with underscore b for bool flag
+* Constants and ENUM: SCREAMING\_SNAKE\_CASE
 
 ---
 ## Version Control Procedures
 Git is used for version control software
-* branches created for each new feature as dev branch
-* branches merged back into master after fully tested and ready for release
-* tags created for releases and version bumped
-* pull requests reviewed by other team members to check for conflict before merging branches
+* Branches created for each new feature as dev branch
+* Branches merged back into master after fully tested and ready for release
+* Tags created for releases and version bumped
+* Pull requests reviewed by other team members to check for conflict before merging branches
 * Git commit messages should have task number at the start of the message such as ```git commit -m "81 blah"```
 
 ---
 ## Build Instructions
 Although undertermined at the moment
 * "node server.js" for starting the node server
-* loading an sql script into the postgreSQL to build base tables
+* Loading an sql script into the postgreSQL to build base tables
 
 ---
 ## Unit Testing

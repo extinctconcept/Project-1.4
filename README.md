@@ -4,10 +4,11 @@
 ## Organization and Naming Conventions
 * Class Names: UpperCamelCase
 * Variables: snake_case
-* css: lowercase
+* CSS: lowercase
 * Directories: UpperCamel
 * Files: Upper\_Snake
-* boolean vars: snake_case\_b with underscore b for bool flag
+* Boolean vars: snake_case\_b with underscore b for bool flag
+* Constants and ENUM: SCREAMING_SNAKE_CASE
 
 ---
 ## Version Control Procedures

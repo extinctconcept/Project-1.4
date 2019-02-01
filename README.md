@@ -29,7 +29,7 @@ Although undertermined at the moment
 ---
 ## Unit Testing
 Unit test written by a group of highly skilled chimpanzees
-There will be unit test but how they are handled has not been decided yet 
+There will be unit tests but how they are handled has not been decided yet 
 
 ---
 ## System Testing

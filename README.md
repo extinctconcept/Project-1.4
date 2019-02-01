@@ -20,7 +20,9 @@ Git is used for version control software
 
 ---
 ## Build Instructions
-Undertermined at the moment
+Although undertermined at the moment
+* "node server.js" for starting the node server
+* loading an sql script into the postgreSQL to build base tables
 
 ---
 ## Unit Testing

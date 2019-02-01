@@ -3,11 +3,11 @@
 ---
 ## Organization and Naming Conventions
 * Class Names: UpperCamelCase
-* Variables: cammelCase
+* Variables: snake_case
 * css: lowercase
 * Directories: UpperCamel
-* Files: Upper\_Camel with underscores
-* boolean vars: camelCase\_b with underscore b for bool flag
+* Files: Upper\_Snake
+* boolean vars: snake_case\_b with underscore b for bool flag
 
 ---
 ## Version Control Procedures
@@ -26,7 +26,8 @@ Although undertermined at the moment
 
 ---
 ## Unit Testing
-Unit test written by a group of highly skilled chimpanzees 
+Unit test written by a group of highly skilled chimpanzees
+There will be unit test but how they are handled has not been decided yet 
 
 ---
 ## System Testing

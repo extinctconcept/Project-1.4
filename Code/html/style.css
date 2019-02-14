@@ -10,6 +10,28 @@ html {
   color: black;
 }
 
+#rectangle {
+  width: 150px;
+  height: 200px;
+  background: #dddddd;
+}
+
+.result {
+  display: flex;
+  margin-left: 60px;
+  padding: 10px;
+  text-align: center;
+}
+
+text {
+  padding: 10px;
+}
+
+table tr th {
+  text-align: center;
+  font-weight: lighter;
+}
+
 li {
   float: left;
 }
@@ -45,6 +67,6 @@ li {
 
 h2 {
   font-size: 64px;
-  justify-content: center;
-  font-weight: bolder;
+  text-align: center;
+  font-weight: lighter;
 }

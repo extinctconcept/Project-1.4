@@ -17,7 +17,9 @@ var contentTypesByExtension = {
 const server = HTTP.createServer(function(req, res) {
 
   var url_path = "/html" + URL.parse(req.url).pathname;
+  console.log(url_path);
   var extension = PATH.extname(url_path);
+  console.log(extension);
   var filename = PATH.join(process.cwd(), url_path);
 
   FS.readFile(filename,function(error,pgResp)
@@ -26,8 +28,10 @@ const server = HTTP.createServer(function(req, res) {
       {
         res.writeHead(404);
         res.write("file not found");
+        console.log("File Not Found");
       } else {
         res.writeHead(200, {'Content-Type': contentTypesByExtension[extension]});
+        console.log(contentTypesByExtension[extension]);
         res.write(pgResp);
       }
       res.end();

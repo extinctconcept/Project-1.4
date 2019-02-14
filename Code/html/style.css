@@ -1,0 +1,50 @@
+html {
+  width: auto;
+  margin: 0;
+  padding: 0;
+  background-color: #fefefe;
+  font-family: helvetica, sans-serif;
+  font-size: 1em;
+  font-style: normal;
+  font-weight: lighter;
+  color: black;
+}
+
+li {
+  float: left;
+}
+
+.navigation_bar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  display: block;
+  overflow: hidden;
+  padding: .4em;
+  font-size: 1em;
+  font-style: inherit;
+  line-height: 1.25;
+  list-style-type: none;
+}
+
+.navigation_bar a {
+  padding: .4em;
+  text-decoration: none;
+  width: 60px;
+}
+
+.navigation_bar a:hover {
+  text-decoration: underline;
+}
+
+.main_heading {
+  color: black;
+  font-weight: lighter;
+}
+
+h2 {
+  font-size: 64px;
+  justify-content: center;
+  font-weight: bolder;
+}

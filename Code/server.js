@@ -1,21 +1,37 @@
 /*server.js*/
 
-const http = require('http');
-const fs = require('fs');
+const HTTP = require('http');
+const FS = require('fs');
+const URL = require('url');
+const PATH = require('path');
 
 const hostname = '127.0.0.1';
 const port = 3000;
 
-const server = http.createServer(function(req, res) {
+var contentTypesByExtension = {
+  '.html': "text/html",
+  '.js':   "text/javascript",
+  '.css':  "text/css"
+};
 
-  fs.readFile("html/index.html",function(error,pgResp)
+const server = HTTP.createServer(function(req, res) {
+
+  var url_path = "/html" + URL.parse(req.url).pathname;
+  console.log(url_path);
+  var extension = PATH.extname(url_path);
+  console.log(extension);
+  var filename = PATH.join(process.cwd(), url_path);
+
+  FS.readFile(filename,function(error,pgResp)
     {
       if(error)
       {
         res.writeHead(404);
-        res.write("index not found");
+        res.write("file not found");
+        console.log("File Not Found");
       } else {
-        res.writeHead(200, {'Content-Type': 'text/html'});
+        res.writeHead(200, {'Content-Type': contentTypesByExtension[extension]});
+        console.log(contentTypesByExtension[extension]);
         res.write(pgResp);
       }
       res.end();

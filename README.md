@@ -39,4 +39,42 @@ UI/UX testing done by team members
 Some items are yet to be determined exactly what the procedure will be will be finalized in the coming days.
 
 
+## Database Setup
 
+### Mac Instructions
+install homebrew and type the following commands.
+
+This will install the lastest version of postgres locally
+```
+brew install postgres
+```
+If you would like a visual editor to write and run queries install "pgadmin4" found at https://www.pgadmin.org/download/
+
+to run the postgres server use the following command
+```
+brew services start postgresql
+```
+
+You will want to make sure that the service starts every time you start you computer. To do so run the following command
+```
+pg_ctrl -D /usr/local/var/postgres start && brew services start postgresql
+```
+
+Now you can run the following command that will take you to the psql command line.
+```
+psql project
+
+or 
+
+sudo psql project
+```
+Here are some useful commands while in psql command line
+```
+\q "This quits psql command line"
+\du "This lists all database users"
+\?  "This lists more helpful commands"
+\list "This lists the databases available"
+```
+
+
+### Windows Instructions

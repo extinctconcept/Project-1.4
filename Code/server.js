@@ -1,21 +1,21 @@
-/*server.js*/
-
 const HTTP = require('http');
 const FS = require('fs');
 const URL = require('url');
 const PATH = require('path');
+const EXPRESS = require('express');
 
 const hostname = '127.0.0.1';
 const port = 3000;
+const app = EXPRESS();
 
 var contentTypesByExtension = {
-  '.html': "text/html",
-  '.js':   "text/javascript",
-  '.css':  "text/css"
+    '.html': "text/html",
+    '.js':   "text/javascript",
+    '.css':  "text/css"
 };
-
-const server = HTTP.createServer(function(req, res) {
-
+/*
+function LoadFile(path)
+{
   var url_path = "/html" + URL.parse(req.url).pathname;
   console.log(url_path);
   var extension = PATH.extname(url_path);
@@ -36,8 +36,12 @@ const server = HTTP.createServer(function(req, res) {
       }
       res.end();
     });
-});
+}*/
 
-server.listen(port, hostname, function() {
-  console.log('Server running at http://'+ hostname + ':' + port + '/');
-});
+app.use('/', EXPRESS.static('html/static/index.html'));
+app.use(EXPRESS.static("html/static"));
+app.use(function (req, res, next) {
+  res.status(404).send("File Not Found.");
+})
+
+app.listen(port, () => console.log(`Server listening on port ${port}!`))

@@ -40,6 +40,13 @@ Some items are yet to be determined exactly what the procedure will be will be f
 
 
 ## Database Setup
+dataBase located on external Pi
+
+To gain access to Pi
+ssh @ pi73.65.215.163 -p 2022
+Password: Project4321
+
+cd /pgAdmin (DataBase will be located here)
 
 ### Mac Instructions
 Install homebrew and type the following commands.

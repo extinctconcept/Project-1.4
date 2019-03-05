@@ -41,6 +41,7 @@ function LoadFile(path)
 
 app.use('/', EXPRESS.static('html/static/index.html'));
 app.use('/login', LOGIN.login);
+app.use('/register', LOGIN.register);
 app.use(EXPRESS.static("html/static"));
 app.use(function (req, res, next) {
   res.status(404).send("File Not Found.");

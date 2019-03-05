@@ -3,6 +3,7 @@ const FS = require('fs');
 const URL = require('url');
 const PATH = require('path');
 const EXPRESS = require('express');
+const LOGIN = require("./login.js");
 
 const hostname = '127.0.0.1';
 const port = 3000;
@@ -39,6 +40,7 @@ function LoadFile(path)
 }*/
 
 app.use('/', EXPRESS.static('html/static/index.html'));
+app.use('/login', LOGIN.login);
 app.use(EXPRESS.static("html/static"));
 app.use(function (req, res, next) {
   res.status(404).send("File Not Found.");

@@ -18,7 +18,7 @@ module.exports.login = function(req, res, next)
     {
         EXPRESS.static("html/static/profile.html")(req,res,next);
         // really we want to shove information into this instead of doing a static serve
-        // this is fine for now.
+        // this is fine for now.  Either that or the page could request a json object later.
     }
     else
     {
@@ -35,7 +35,7 @@ module.exports.register = function(req, res, next)
         logins[query_data.username] = query_data.password;
         EXPRESS.static("html/static/profile.html")(req,res,next);
         // really we want to shove information into this instead of doing a static serve
-        // this is fine for now.
+        // this is fine for now.  Either that or the page could request a json object later.
     }
     else
     {

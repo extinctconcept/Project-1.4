@@ -1,5 +1,6 @@
-html {
-  width: auto;
+html, body {
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
   background-color: #fefefe;
@@ -27,42 +28,81 @@ text {
   padding: 10px;
 }
 
-table tr th {
-  text-align: center;
-  font-weight: lighter;
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #bebebe;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
 }
 
 li {
   float: left;
 }
 
-.navigation_bar {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  width: 100%;
+li a {
   display: block;
-  overflow: hidden;
-  padding: .4em;
-  font-size: 1em;
-  font-style: inherit;
-  line-height: 1.25;
-  list-style-type: none;
-}
-
-.navigation_bar a {
-  padding: .4em;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
   text-decoration: none;
-  width: 60px;
 }
 
-.navigation_bar a:hover {
-  text-decoration: underline;
+li a:hover {
+  background-color: #ababab;
+}
+
+.active {
+  background-color: teal;
 }
 
 .main_heading {
   color: black;
   font-weight: lighter;
+}
+
+.login_form {
+  position: fixed;
+  width: 340px;
+  height: 280px;
+  top: 50%;
+  left: 50%;
+  margin-top: -140px;
+  margin-left: -170px;
+}
+
+form {
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+label {
+  color: teal;
+  display: inline-block;
+  margin-left: 18px;
+  padding-top: 10px;
+  font-size: 14px;
+}
+
+p a {
+  font-size: 11px;
+  color: black;
+  float: right;
+  margin-top: -13px;
+  margin-right: 20px;
+}
+
+p a:hover {
+  color: #050505;
+}
+
+input {
+  font-family: "Helvetica Neue", helvetica, sans-serif;
+  font-size: 12px;
+  outline: none;
 }
 
 h2 {

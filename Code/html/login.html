@@ -9,19 +9,23 @@
 
 	<body>
 		<h1 class="main_heading">Project4</h1>
-		<ul class="navigation_bar">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="search.html">Search Games</a></li>
+
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="search.html">Search Games</a></li>
+			<li style="float::right"><a href="login.html" class="active">Login</a></li>
 		</ul>
-    <table>
-      <tr>
-        <th>Username:</th>
-        <th></th>
-      </tr>
-      <tr>
-        <th>Password:</th>
-        <th></th>
-      </tr>
-    </table>
+
+		<div class="login_form">
+			<form action="">
+				<label for="username">Username:</label>
+				<input type="text" id="username" name="username" required>
+
+				<label for="password">Password:</label>
+				<input type="password" id="username" name="password" required>
+
+				<button type="submit">Login</button>
+			</form>
+	  </div>
 	</body>
 </html>

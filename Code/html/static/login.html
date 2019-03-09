@@ -9,11 +9,19 @@
 
 	<body>
 		<h1 class="main_heading">Project4</h1>
-		<ul class="navigation_bar">
-      <li><a href="index.html">Home</a></li>
-			<li><a href="register.html">Register</a></li>
-      <li><a href="search.html">Search Games</a></li>
+
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="search.html">Search Games</a></li>
+			<li><a href="#" class="active">Account</a>
+				<ul class="dropdown">
+					<li><a href="login.html">Login</a></li>
+					<li><a href="register.html">Register</a></li>
+					<li><a href="profile.html">Profile</a></li>
+				</ul>
+			</li>
 		</ul>
+
     <form action="/login" method="get">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username">

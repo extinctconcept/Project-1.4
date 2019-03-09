@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8"/>
 		<link href="style.css" type="text/css" rel="stylesheet"/>
-		<title>Project4 Login</title>
+		<title>Project4 Profile</title>
 	</head>
 
 	<body>
@@ -13,13 +13,34 @@
 		<ul>
 			<li><a href="index.html">Home</a></li>
 			<li><a href="search.html">Search Games</a></li>
-			<li style="float::right"><a href="login.html" class="active">Login</a></li>
+			<li><a href="#" class="active">Account</a>
+				<ul class="dropdown">
+					<li><a href="login.html">Login</a></li>
+					<li><a href="register.html">Register</a></li>
+					<li><a href="profile.html">Profile</a></li>
+				</ul>
+			</li>
 		</ul>
+
     <table>
+			<thead>
       <tr>
         <th>Owned Games:</th>
-        <th></th>
+        <th>Sample Game 1</th>
+				<th>Sample Game 2</th>
       </tr>
     </table>
+
+		<div class="add_game_container">
+			<input id="popup_toggle" type="checkbox">
+			<label class="popup_button" for="popup_toggle">Add Game</label>
+			<label class="popup_backdrop" for="popup_toggle"></label>
+			<div class="add_game">
+    		<label class="popup_close" for="popup_toggle">&#x2715;</label>
+    		<h1>Add Game</h1>
+    		<label class="popup_content_button" for="popup_toggle">OK</label>
+  		</div>
+		</div>
+
 	</body>
 </html>

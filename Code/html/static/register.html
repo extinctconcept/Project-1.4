@@ -4,15 +4,24 @@
 	<head>
 		<meta charset="utf-8"/>
 		<link href="style.css" type="text/css" rel="stylesheet"/>
-		<title>Project4 Login</title>
+		<title>Project4 Register</title>
 	</head>
 
 	<body>
 		<h1 class="main_heading">Project4</h1>
-		<ul class="navigation_bar">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="search.html">Search Games</a></li>
+
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="search.html">Search Games</a></li>
+			<li><a href="#" class="active">Account</a>
+				<ul class="dropdown">
+					<li><a href="login.html">Login</a></li>
+					<li><a href="register.html">Register</a></li>
+					<li><a href="profile.html">Profile</a></li>
+				</ul>
+			</li>
 		</ul>
+
     <form action="/register" method="get">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username">

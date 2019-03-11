@@ -1,6 +1,7 @@
 const COOKIES = require("cookies");
 const EXPRESS = require('express');
 const LOGIN = require("./login.js")
+const URL = require('url');
 
 module.exports.profile = function(req, res, next)
 {
@@ -17,4 +18,11 @@ module.exports.profile = function(req, res, next)
     {
         EXPRESS.static("html/static/profile.html")(req,res,next);
     }
+}
+
+module.exports.view_profile = function(req,res,next)
+{
+    //Some sort of code for getting a profile that is different than the users.
+    //var query_data = URL.parse(req.url,true).query;
+    next();
 }

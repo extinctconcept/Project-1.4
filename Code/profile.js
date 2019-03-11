@@ -1,6 +1,6 @@
 const COOKIES = require("cookies");
 const EXPRESS = require('express');
-const LOGIN = require("./login.js")
+const LOGIN = require("./login.js");
 const URL = require('url');
 
 module.exports.profile = function(req, res, next)

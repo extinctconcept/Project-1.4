@@ -4,6 +4,8 @@ const URL = require('url');
 const PATH = require('path');
 const EXPRESS = require('express');
 const LOGIN = require("./login.js");
+const COOKIES = require("./cookie.js");
+const PROFILE = require("./profile.js");
 
 const hostname = '127.0.0.1';
 const port = 3000;
@@ -14,34 +16,12 @@ var contentTypesByExtension = {
     '.js':   "text/javascript",
     '.css':  "text/css"
 };
-/*
-function LoadFile(path)
-{
-  var url_path = "/html" + URL.parse(req.url).pathname;
-  console.log(url_path);
-  var extension = PATH.extname(url_path);
-  console.log(extension);
-  var filename = PATH.join(process.cwd(), url_path);
 
-  FS.readFile(filename,function(error,pgResp)
-    {
-      if(error)
-      {
-        res.writeHead(404);
-        res.write("file not found");
-        console.log("File Not Found");
-      } else {
-        res.writeHead(200, {'Content-Type': contentTypesByExtension[extension]});
-        console.log(contentTypesByExtension[extension]);
-        res.write(pgResp);
-      }
-      res.end();
-    });
-}*/
-
+app.use(COOKIES.cookie);
 app.use('/', EXPRESS.static('html/static/index.html'));
 app.use('/login', LOGIN.login);
 app.use('/register', LOGIN.register);
+app.use('/profile.html', PROFILE.profile);
 app.use(EXPRESS.static("html/static"));
 app.use(function (req, res, next) {
   res.status(404).send("File Not Found.");

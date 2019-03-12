@@ -23,10 +23,10 @@ app.use('/login', LOGIN.login);
 app.use('/register', LOGIN.register);
 app.use('/logout|/logout.html', LOGIN.logout);
 app.use('/profile.html', PROFILE.profile);
-app.use('/profile', PROFILE.view_profile);
+app.use('/profile/:username', PROFILE.view_profile);
 app.use(EXPRESS.static("html/static"));
 app.use(function (req, res, next) {
-  res.status(404).send("File Not Found.");
+  res.redirect("/index.html");
 })
 
 app.listen(port, () => console.log(`Server listening on port ${port}!`))

@@ -17,10 +17,10 @@ module.exports.login = function(req, res, next)
 {
     var query_data = URL.parse(req.url, true).query;
     console.log(query_data);
-    var cookies = new COOKIES(req,res);
     if(Query_Login(query_data.username, query_data.password))
     {
-        cookies.set('key',sessionID);
+        var cookies = new COOKIES(req,res);
+        cookies.set('key',sessionID, {httpOnly:false});
         sessions[sessionID] = query_data.username;
         sessionID += 1;
 
@@ -53,7 +53,9 @@ module.exports.register = function(req, res, next)
 
 module.exports.logout = function(req,res,next)
 {
-    res.clearCookie('key');
+    var cookies = new COOKIES(req,res);
+    cookies.set('key', 0, {expires:new Date(), httpOnly:false});
+    res.redirect("/index.html");
 }
 
 module.exports.sessions = sessions;

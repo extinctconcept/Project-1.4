@@ -21,6 +21,7 @@ app.use(COOKIES.cookie);
 app.use('/', EXPRESS.static('html/static/index.html'));
 app.use('/login', LOGIN.login);
 app.use('/register', LOGIN.register);
+app.use('/logout|/logout.html', LOGIN.logout);
 app.use('/profile.html', PROFILE.profile);
 app.use('/profile', PROFILE.view_profile);
 app.use(EXPRESS.static("html/static"));

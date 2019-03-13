@@ -4,23 +4,12 @@
 	<head>
 		<meta charset="utf-8"/>
 		<link href="style.css" type="text/css" rel="stylesheet"/>
+		<script src="header.js"></script>
 		<title>Project4 Home</title>
 	</head>
 
-	<body>
-		<h1 class="main_heading">Project4</h1>
-
-		<ul>
-			<li><a href="index.html" class="active">Home</a></li>
-			<li><a href="search.html">Search Games</a></li>
-			<li><a href="#">Account</a>
-				<ul class="dropdown">
-					<li><a href="login.html">Login</a></li>
-					<li><a href="register.html">Register</a></li>
-					<li><a href="profile.html">Profile</a></li>
-				</ul>
-			</li>
-		</ul>
+	<body onload="headerBuilder.initialize()">
+		<header></header>
 
 		<h2>Welcome</h2>
 

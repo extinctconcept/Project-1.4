@@ -4,6 +4,7 @@
   "description": "cs3450",
   "main": "server.js",
   "dependencies": {
+    "cookies": "^0.7.3",
     "express": "^4.16.4",
     "pg": "^7.8.0",
     "ps": "^1.0.0"

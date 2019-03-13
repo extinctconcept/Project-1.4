@@ -23,7 +23,8 @@ Git is used for version control software
 ---
 ## Build Instructions
 Although undertermined at the moment
-* "node server.js" for starting the node server
+* "npm start" for starting the node server
+* "npm install" if modules are missing
 * http://127.0.0.1:3000 -> Starting page
 * Loading an sql script into the postgreSQL to build base tables
 

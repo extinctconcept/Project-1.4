@@ -40,6 +40,12 @@ module.exports.register = function(req, res, next)
     console.log(query_data);
     if(logins[query_data.username] === undefined)
     {
+        
+        var cookies = new COOKIES(req,res);
+        cookies.set('key',sessionID, {httpOnly:false});
+        sessions[sessionID] = query_data.username;
+        sessionID += 1;
+        
         logins[query_data.username] = query_data.password;
         EXPRESS.static("html/static/profile.html")(req,res,next);
         // really we want to shove information into this instead of doing a static serve

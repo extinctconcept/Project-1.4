@@ -45,10 +45,14 @@ Some items are yet to be determined exactly what the procedure will be will be f
 dataBase located on external Pi
 
 To gain access to Pi
-ssh pi@73.65.215.163 -p 2022
+ssh pi@73.65.215.163 -p 2022 -L1234:localhost:3000 (This will forward port 3000 when you start up the server)
 Password: Project4321
 
-cd /pgAdmin (DataBase will be located here)
+"cd /pgAdmin/Code" (DataBase will be located here)
+"npm start"
+
+open web browser and access the server within any network
+"http://localhost:1234/"
 
 ### Mac Instructions
 Install homebrew and type the following commands.

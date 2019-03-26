@@ -45,7 +45,7 @@ Some items are yet to be determined exactly what the procedure will be will be f
 dataBase located on external Pi
 
 To gain access to Pi
-ssh @ pi73.65.215.163 -p 2022
+ssh pi@73.65.215.163 -p 2022
 Password: Project4321
 
 cd /pgAdmin (DataBase will be located here)
@@ -82,7 +82,7 @@ Here are some useful commands while in psql command line
 \q "This quits psql command line"
 \du "This lists all database users"
 \?  "This lists more helpful commands"
-\list "This lists the databases available"
+\l "This lists the databases available"
 ```
 
 

@@ -36,6 +36,12 @@ There will be unit tests but how they are handled has not been decided yet
 ---
 ## System Testing
 UI/UX testing done by team members
+testing framework was installed by the command "npm install mocha chai --save-dev"
+
+*Testing will be done using mocha and chai
+
+To run tests type "npm run test"
+This will run all tests located in the tests folder. More tests to come with future development. 
 
 ## Misc Notes
 Some items are yet to be determined exactly what the procedure will be will be finalized in the coming days.

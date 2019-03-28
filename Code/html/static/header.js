@@ -27,3 +27,12 @@ var headerBuilder = {
         document.getElementsByTagName("header")[0].innerHTML = in_html;
     }
 }
+
+module.exports = {
+    sayHello: function(){
+        return 'hello';
+    },
+    addNumbers: function(val1,val2){
+        return val1 + val2;
+    }
+}

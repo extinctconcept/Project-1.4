@@ -29,12 +29,7 @@ Although undertermined at the moment
 * Loading an sql script into the postgreSQL to build base tables
 
 ---
-## Unit Testing
-Unit test written by a group of highly skilled chimpanzees
-There will be unit tests but how they are handled has not been decided yet 
-
----
-## System Testing
+## System Testing And Unit Testing
 UI/UX testing done by team members
 testing framework was installed by the command "npm install mocha chai --save-dev"
 

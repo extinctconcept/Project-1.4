@@ -16,6 +16,7 @@ function Query_Login(username, password)
 function Query_Register(username,password)
 {
     logins[username] = password;
+    return true; // username is not already in the database.
 }
 
 module.exports.login = function(req, res, next)
@@ -51,8 +52,14 @@ module.exports.register = function(req, res, next)
         sessions[sessionID] = query_data.username;
         sessionID += 1;
 
-        Query_Register(query_data.username,query_data.password);
-        EXPRESS.static("html/static/profile.html")(req,res,next);
+        if(Query_Register(query_data.username,query_data.password))
+        {
+            EXPRESS.static("html/static/profile.html")(req,res,next);
+        }
+        else
+        {
+            EXPRESS.static("html/static/login.html")(req,res,next);
+        }
         // really we want to shove information into this instead of doing a static serve
         // this is fine for now.  Either that or the page could request a json object later.
     }

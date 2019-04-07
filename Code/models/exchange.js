@@ -1,15 +1,43 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const exchange = sequelize.define('exchange', {
-    game_id: DataTypes.INTEGER,
-    person_id: DataTypes.INTEGER,
-    borrower_id: DataTypes.INTEGER,
-    game_id: DataTypes.INTEGER,
-    exchange_date: DataTypes.DATE,
-    return_date: DataTypes.DATE
+    exchange_id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+    },
+    game_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+    },
+    person_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+    },
+    borrower_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+    },
+    game_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+    },
+    exchange_date: {
+        allowNull: false,
+        type: Sequalize.DATE
+    },
+    return_date: {
+        allowNull: false,
+        type: Sequalize.DATE
+    }
   }, {});
   exchange.associate = function(models) {
     // associations can be defined here
+    exchange.belongsTo(models.persons, {
+        foreignKey: 'person_id',
+        onDelete: 'CASCADE'
+    });       
   };
   return exchange;
 };

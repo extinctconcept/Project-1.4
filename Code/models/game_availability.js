@@ -1,9 +1,18 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const game_availability = sequelize.define('game_availability', {
-    available: DataTypes.INTEGER,
-    unavailable: DataTypes.INTEGER,
-    pending: DataTypes.INTEGER
+    available: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+    },
+    unavailable: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+    },
+    pending: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+    },
   }, {});
   game_availability.associate = function(models) {
     // associations can be defined here

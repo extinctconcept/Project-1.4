@@ -1,18 +1,28 @@
 var data = null;
 
 var xhr = new XMLHttpRequest();
-xhr.withCredentials = true;
+
+
+function Display_Games(arr)
+{
+    let display = document.getElementById("game-display");
+    display.innerHTML = "<p>TOP GAMES!!!!!!:</p>";
+    arr.forEach(element => {
+        if(element.cover === undefined)
+            display.innerHTML += "<p>" + element.name + "<p>";
+        else
+            display.innerHTML += "<p>" + "<img src='" + element.cover.url + "'>" + element.name + " " + "<p>";
+    });
+}
 
 xhr.addEventListener("readystatechange", function () {
   if (this.readyState === this.DONE) {
-    console.log(this.responseText);
+    let x = JSON.parse(this.responseText);
+    console.log(x);
+    Display_Games(x);
   }
 });
 
-xhr.open("GET", "https://api-v3.igdb.com/games/?fields=name%2Ccover.url%2Cgenres.name");
-xhr.setRequestHeader("cookie", "__cfduid=dbfedfdd2af3b8fd49a4dc01195a5a6841554437156");
-xhr.setRequestHeader("user-key", "b75f7df0294c1201e3e195ee8a453ca9");
-xhr.setRequestHeader("accept", "application/json");
+xhr.open("GET", "games/");
 
 xhr.send(data);
-

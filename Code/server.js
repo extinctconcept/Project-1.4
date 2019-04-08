@@ -26,7 +26,7 @@ function Query_Games_Api(req,res,next)
 
   var options = { method: 'GET',
     url: 'https://api-v3.igdb.com/games/',
-    qs: { fields: 'name,cover.url,genres.name'},
+    qs: { fields: 'name,cover.url,genres.name', limit:'34'},
     headers:
     { 'user-key': 'b75f7df0294c1201e3e195ee8a453ca9',
       accept: 'application/json' },

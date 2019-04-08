@@ -6,6 +6,7 @@ const EXPRESS = require('express');
 const LOGIN = require("./login.js");
 const COOKIES = require("./cookie.js");
 const PROFILE = require("./profile.js");
+const CORS = require('cors');
 
 const hostname = '127.0.0.1';
 const port = 3000;
@@ -17,6 +18,12 @@ var contentTypesByExtension = {
     '.css':  "text/css"
 };
 
+function Query_Games_Api(req,res,next)
+{
+  
+}
+
+//app.use(CORS({origin: '*'}));
 app.use(COOKIES.cookie);
 app.use('/', EXPRESS.static('html/static/index.html'));
 app.use('/login', LOGIN.login);
@@ -28,5 +35,6 @@ app.use(EXPRESS.static("html/static"));
 app.use(function (req, res, next) {
   res.redirect("/index.html");
 })
+app.use(Query_Games_Api);
 
 app.listen(port, () => console.log(`Server listening on port ${port}!`))

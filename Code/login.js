@@ -7,16 +7,18 @@ var logins = { 'test': 'test' };
 var sessions = ['test'];
 var sessionID = 1;
 
-module.exports = {
-    Query_Login: function (username, password) {
+module.exports.Query_Login = function(username, password) 
+{
         return logins[username] == password;
         //return username == 'test' && password == 'test';
-    }
 }
 
 
 function Query_Register(username,password)
 {
+    if(typeof logins[username] !== undefined)
+        return false;
+        
     logins[username] = password;
     return true; // username is not already in the database.
 }

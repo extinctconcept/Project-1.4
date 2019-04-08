@@ -20,6 +20,25 @@ var contentTypesByExtension = {
 
 function Query_Games_Api(req,res,next)
 {
+  var request = require("request");
+
+var jar = request.jar();
+jar.setCookie(request.cookie("__cfduid=dbfedfdd2af3b8fd49a4dc01195a5a6841554437156"), "https://api-v3.igdb.com/games/");
+
+var options = { method: 'GET',
+  url: 'https://api-v3.igdb.com/games/',
+  qs: { fields: 'name,cover.url,genres.name' },
+  headers:
+   { 'user-key': 'b75f7df0294c1201e3e195ee8a453ca9',
+     accept: 'application/json' },
+  jar: 'JAR' };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+
   
 }
 

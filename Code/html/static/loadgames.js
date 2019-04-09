@@ -11,7 +11,7 @@ function Display_Games(arr)
         if(element.cover === undefined)
             display.innerHTML += "<p>" + element.name + "<p>";
         else
-            display.innerHTML += "<p>" + "<img src='" + element.cover.url + "'>" + element.name + " " + "<p>";
+            display.innerHTML += "<div class=\"list_item\">" + "<img class= \"list_image\" src='" + element.cover.url + "'>" + "<div class=\"list_text\">" + element.name + "<div>" + "<div>";
     });
 }
 

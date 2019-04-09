@@ -18,7 +18,7 @@ function Display_Games(arr)
 xhr.addEventListener("readystatechange", function () {
   if (this.readyState === this.DONE) {
     let x = JSON.parse(this.responseText);
-    console.log(x);
+    //console.log(x);
     Display_Games(x);
   }
 });

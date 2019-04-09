@@ -38,6 +38,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'person_id',
         onDelete: 'CASCADE'
     });       
+    exchange.belongsTo(models.game, {
+        foreignKey: 'game_id',
+        onDelete: 'CASCADE'
+    });       
   };
   return exchange;
 };

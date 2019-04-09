@@ -11,6 +11,21 @@
 	<body onload="headerBuilder.initialize()">
 		<header></header>
 
+	<div class="add_game_container">
+		<input id="popup_toggle" type="checkbox">
+		<label class="popup_button" for="popup_toggle">Add Game</label>
+		<label class="popup_backdrop" for="popup_toggle"></label>
+		<div class="add_game">
+			<label class="popup_close" for="popup_toggle">&#x2715;</label>
+			<h1>Add Game</h1>
+			<form action="/addgame" method="get">
+				<label>Game Title: </label>
+				<input type="text" id="game_name" name="game_name" required>
+				<label class="popup_content_button" for="popup_toggle" onclick="addgame.js">OK</label>
+			</form>
+		</div>
+	</div>
+	
     <table>
 			<thead>
       <tr>
@@ -20,20 +35,6 @@
       </tr>
     </table>
 
-		<div class="add_game_container">
-			<input id="popup_toggle" type="checkbox">
-			<label class="popup_button" for="popup_toggle">Add Game</label>
-			<label class="popup_backdrop" for="popup_toggle"></label>
-			<div class="add_game">
-    		<label class="popup_close" for="popup_toggle">&#x2715;</label>
-    			<h1>Add Game</h1>
-				<form method="get">
-					<label>Game Title: </label>
-					<input type="text" required>
-				</form>
-    			<label class="popup_content_button" for="popup_toggle">OK</label>
-  			</div>
-		</div>
 	</body>
-	
+
 </html>

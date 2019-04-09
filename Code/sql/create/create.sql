@@ -1,7 +1,8 @@
 CREATE TABLE public.persons
 (
   person_id     integer    NOT NULL,
-  pw            varchar	   NOT NULL,
+  password      varchar	   NOT NULL,
+  username      varchar    NOT NULL,
   first_name    varchar    NOT NULL,
   last_name     varchar    NOT NULL,
   email         varchar    NOT NULL,

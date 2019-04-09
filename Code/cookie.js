@@ -11,6 +11,7 @@ module.exports.cookie = function(req, res, next)
     var lastVisit = cookies.get('LastVisit');
 
     cookies.set('LastVisit', new Date().toISOString());
+    cookies.set('cookie', "", {httpOnly:false, sameSite:false});
 
     if(!lastVisit)
     {

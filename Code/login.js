@@ -7,18 +7,22 @@ var logins = { 'test': 'test' };
 var sessions = ['test'];
 var sessionID = 1;
 
-module.exports = {
-    Query_Login: function (username, password) {
+function Query_Login(username, password)
+{
         return logins[username] == password;
         //return username == 'test' && password == 'test';
-    }
 }
 
 function Query_Register(username,password)
 {
+    if(logins[username] !== undefined)
+        return false;
+
     logins[username] = password;
     return true; // username is not already in the database.
 }
+
+module.exports.Query_Register = Query_Register;
 
 module.exports.login = function(req, res, next)
 {
@@ -43,29 +47,22 @@ module.exports.login = function(req, res, next)
 module.exports.register = function (req, res, next) {
     var query_data = URL.parse(req.url, true).query;
     console.log(query_data);
-    if (logins[query_data.username] === undefined) {
 
+    if(Query_Register(query_data.username,query_data.password))
+    {
         var cookies = new COOKIES(req, res);
         cookies.set('key', sessionID, { httpOnly: false });
         sessions[sessionID] = query_data.username;
         sessionID += 1;
-
-
-        if(Query_Register(query_data.username,query_data.password))
-        {
-            EXPRESS.static("html/static/profile.html")(req,res,next);
-        }
-        else
-        {
-            EXPRESS.static("html/static/login.html")(req,res,next);
-        }
+        EXPRESS.static("html/static/profile.html")(req,res,next);
+    }
+    else
+    {
+        EXPRESS.static("html/static/login.html")(req,res,next);
+    }
 
         // really we want to shove information into this instead of doing a static serve
         // this is fine for now.  Either that or the page could request a json object later.
-    }
-    else {
-        EXPRESS.static("html/static/login.html")(req, res, next);
-    }
 }
 
 module.exports.logout = function (req, res, next) {

@@ -14,7 +14,6 @@ module.exports = {
     }
 }
 
-
 function Query_Register(username,password)
 {
     logins[username] = password;

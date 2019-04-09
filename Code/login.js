@@ -13,8 +13,6 @@ function Query_Login(username, password)
         //return username == 'test' && password == 'test';
 }
 
-module.exports.Query_Login = Query_Login;
-
 function Query_Register(username,password)
 {
     if(logins[username] !== undefined)

@@ -23,6 +23,7 @@ function Query_Register(username,password)
 }
 
 module.exports.Query_Register = Query_Register;
+module.exports.Query_Login = Query_Login;
 
 module.exports.login = function(req, res, next)
 {

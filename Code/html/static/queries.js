@@ -63,17 +63,6 @@ const getGameByName = (request, response) => {
     })
   }
 
-const createUser = (request, response) => {
-    // const { username, first_name, last_name, email } = request.body
-  
-    // pool.query('INSERT INTO persons (username, first_name, last_name, email) VALUES ($1, $2, $3, $4, $5)', [username, first_name, last_name, email], (error, results) => {
-    //   if (error) {
-    //     throw error
-    //   }
-    //   response.status(201).send(`User added with ID: ${result.insertId}`)
-    // })
-  }
-
 const createGame = (request, response) => {
     // const { username } = reqeust.body.username
     // user_id = getUser();

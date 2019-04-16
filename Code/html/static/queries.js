@@ -16,13 +16,13 @@ const getUsers = (request, response) => {
     })
   }
 
-const getUser = (request,respone) => {
-    // const {username}
-    // pool.query('SELECT * FROM persons WHERE username = $1', [username])
-    // if(error) {
-    //     throw(error)
-    // }
-    // response.status(200).json(results.rows)
+const getUser = (request, response) => {
+    const username = parseInt(request.params.username)
+    pool.query('SELECT * FROM persons WHERE username = $1', [username])
+    if(error) {
+        throw(error)
+    }
+    response.status(200).json(results.rows)
 }
 
 const getGames = (request, response) => {
@@ -34,7 +34,7 @@ const getGames = (request, response) => {
     })
   }
 
-const getGameByName = (name, request, response) => {
+const getGameByName = (request, response) => {
     pool.query('SELECT * FROM game ORDER BY id ASC', (error, results) => {
       if (error) {
         throw error
@@ -71,4 +71,6 @@ const createGame = (request, response) => {
 
 module.exports = {
   getUsers,
+  getUser,
+  getGames,
 }

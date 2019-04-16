@@ -44,12 +44,11 @@ const createUser = (request, response) => {
       }
       response.status(201).send(`User added with ID: ${result.insertId}`)
     })
-
 }
 
 const getGamesByUser = (request, response) => {
     const query_data = URL.parse(request.url, true).query;
-    pool.query('SELECT * FROM game as gm\
+    pool.query('SELECT * FROM game AS gm\
                 JOIN persons AS pe ON (gm.person_id = pe.person_id) \
                 WHERE pe.username = $1  ORDER BY game_id ASC',[query_data.username], (error, results) => {
       if (error) {
@@ -64,24 +63,27 @@ const getGames = (request, response) => {
       if (error) {
         throw error
       }
-      // iterate here to parse out game by name
       response.status(200).json(results.rows)
     })
   }
 
 const createGame = (request, response) => {
-    // const { username } = reqeust.body.username
-    // user_id = getUser();
-    // username = user_id.username
-    // const { user_id, title } = request.body
-  
-    // pool.query('INSERT INTO persons (username, first_name, last_name, email) VALUES ($1, $2, $3, $4, $5)', [username, first_name, last_name, email], (error, results) => {
-    //   if (error) {
-    //     throw error
-    //   }
-    //   response.status(201).send(`Game added with ID: ${result.insertId}`)
-    // })
-  }
+  // const {
+  //   password,
+  //   username,
+  //   first_name,
+  //   last_name,
+  //   email
+  //   } = request.body
+
+  //   pool.query('INSERT INTO persons (password, username, first_name, last_name, email) values ($1, $2, $3, $4, $5)', 
+  //     [password, username, first_name, last_name, email], (error, results) => {
+  //     if (error) {
+  //       throw error
+  //     }
+  //     response.status(201).send(`User added with ID: ${result.insertId}`)
+  //   })  
+}
 
 module.exports = {
   createUser,

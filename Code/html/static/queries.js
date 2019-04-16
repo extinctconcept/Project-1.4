@@ -68,3 +68,7 @@ const createGame = (request, response) => {
       response.status(201).send(`Game added with ID: ${result.insertId}`)
     })
   }
+
+  module.exports = {
+    getUsers,
+  }

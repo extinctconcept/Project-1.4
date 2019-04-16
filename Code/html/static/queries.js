@@ -27,7 +27,7 @@ const getUser = (request, response) => {
 }
 
 const getGames = (request, response) => {
-    pool.query('SELECT * FROM games ORDER BY id ASC', (error, results) => {
+    pool.query('SELECT * FROM games ORDER BY game_id ASC', (error, results) => {
       if (error) {
         throw error
       }

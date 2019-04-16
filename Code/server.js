@@ -57,6 +57,7 @@ app.use('/games', Query_Games_Api);
 app.get('/getusers', db.getUsers);
 app.get('/getuser/', db.getUser);
 app.get('/getgames', db.getGames);
+app.get('/getgamesbyuser/', db.getGamesByUser);
 app.post('/createUser', db.createUser);
 app.use(function (req, res, next) {
   res.redirect("/index.html");

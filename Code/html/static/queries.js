@@ -47,8 +47,11 @@ const createUser = (request, response) => {
 
 }
 
-const getGames = (request, response) => {
-    pool.query('SELECT * FROM game ORDER BY game_id ASC', (error, results) => {
+const getGamesByUser = (request, response) => {
+    const query_data = URL.parse(request.url, true).query;
+    pool.query('SELECT * FROM game as gm\
+                JOIN person AS pe ON (gm.person_id = pe.person_id) \
+                WHERE pe.username = $1  ORDER BY game_id ASC',[query_data.username], (error, results) => {
       if (error) {
         throw error
       }
@@ -56,7 +59,7 @@ const getGames = (request, response) => {
     })
   }
 
-const getGameByName = (request, response) => {
+const getGames = (request, response) => {
     pool.query('SELECT * FROM game ORDER BY id ASC', (error, results) => {
       if (error) {
         throw error
@@ -85,4 +88,5 @@ module.exports = {
   getUsers,
   getUser,
   getGames,
+  getGamesByUser,
 }

@@ -17,12 +17,12 @@ const getUsers = (request, response) => {
   }
 
 const getUser = (request,respone) => {
-    const {username}
-    pool.query('SELECT * FROM persons WHERE username = $1', [username])
-    if(error) {
-        throw(error)
-    }
-    response.status(200).json(results.rows)
+    // const {username}
+    // pool.query('SELECT * FROM persons WHERE username = $1', [username])
+    // if(error) {
+    //     throw(error)
+    // }
+    // response.status(200).json(results.rows)
 }
 
 const getGames = (request, response) => {
@@ -45,30 +45,30 @@ const getGameByName = (name, request, response) => {
   }
 
 const createUser = (request, response) => {
-    const { username, first_name, last_name, email } = request.body
+    // const { username, first_name, last_name, email } = request.body
   
-    pool.query('INSERT INTO persons (username, first_name, last_name, email) VALUES ($1, $2, $3, $4, $5)', [username, first_name, last_name, email], (error, results) => {
-      if (error) {
-        throw error
-      }
-      response.status(201).send(`User added with ID: ${result.insertId}`)
-    })
+    // pool.query('INSERT INTO persons (username, first_name, last_name, email) VALUES ($1, $2, $3, $4, $5)', [username, first_name, last_name, email], (error, results) => {
+    //   if (error) {
+    //     throw error
+    //   }
+    //   response.status(201).send(`User added with ID: ${result.insertId}`)
+    // })
   }
 
 const createGame = (request, response) => {
-    const { username } = reqeust.body.username
-    user_id = getUser();
-    username = user_id.username
-    const { user_id, title } = request.body
+    // const { username } = reqeust.body.username
+    // user_id = getUser();
+    // username = user_id.username
+    // const { user_id, title } = request.body
   
-    pool.query('INSERT INTO persons (username, first_name, last_name, email) VALUES ($1, $2, $3, $4, $5)', [username, first_name, last_name, email], (error, results) => {
-      if (error) {
-        throw error
-      }
-      response.status(201).send(`Game added with ID: ${result.insertId}`)
-    })
+    // pool.query('INSERT INTO persons (username, first_name, last_name, email) VALUES ($1, $2, $3, $4, $5)', [username, first_name, last_name, email], (error, results) => {
+    //   if (error) {
+    //     throw error
+    //   }
+    //   response.status(201).send(`Game added with ID: ${result.insertId}`)
+    // })
   }
 
-  module.exports = {
-    getUsers,
-  }
+module.exports = {
+  getUsers,
+}

@@ -50,7 +50,7 @@ const createUser = (request, response) => {
 const getGamesByUser = (request, response) => {
     const query_data = URL.parse(request.url, true).query;
     pool.query('SELECT * FROM game as gm\
-                JOIN person AS pe ON (gm.person_id = pe.person_id) \
+                JOIN persons AS pe ON (gm.person_id = pe.person_id) \
                 WHERE pe.username = $1  ORDER BY game_id ASC',[query_data.username], (error, results) => {
       if (error) {
         throw error

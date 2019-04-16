@@ -36,7 +36,9 @@ module.exports = (sequelize, DataTypes) => {
     zip: {
         type: Sequelize.INTEGER
     }
-  }, {});
+  }, {
+        timestamps: false
+  });
   persons.associate = function(models) {
     // associations can be defined here
         persons.hasMany(models.game, {

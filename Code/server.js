@@ -55,8 +55,8 @@ app.use('/profile/:username', PROFILE.view_profile);
 app.use(EXPRESS.static("html/static"));
 app.use('/games', Query_Games_Api);
 app.get('/getusers', db.getUsers);
-app.get('/getgames', db.getGames);
 app.get('/getuser/:username', db.getUser);
+app.get('/getgames', db.getGames);
 app.use(function (req, res, next) {
   res.redirect("/index.html");
 })

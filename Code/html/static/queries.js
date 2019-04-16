@@ -1,3 +1,4 @@
+const URL = require('url');
 const Pool = require('pg').Pool
 const pool = new Pool({
   user: 'pi',
@@ -17,8 +18,9 @@ const getUsers = (request, response) => {
   }
 
 const getUser = (request, response) => {
-    const username = parseString(request.params.username)
-    pool.query('SELECT * FROM persons WHERE username = $1', [username])
+    const query_data = URL.parse(request.url, true).query;
+    console.log(query_data);
+    pool.query('SELECT * FROM persons WHERE username = $1', [query_data.username])
     if(error) {
         throw(error)
     }

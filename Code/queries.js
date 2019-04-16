@@ -8,55 +8,56 @@ const pool = new Pool({
   port: 5432,
 })
 
-const getUsers = (request, response) => {
+const getUsers = () => {
     pool.query('SELECT * FROM persons ORDER BY person_id ASC', (error, results) => {
       if (error) {
         throw error
       }
-      response.status(200).json(results.rows)
+      //response.status(200).json(results.rows)
+      return results.rows;
     })
   }
 
-const getUser = (request, response) => {
-    const query_data = URL.parse(request.url, true).query;
-    console.log(query_data.username);
-    pool.query('SELECT * FROM persons WHERE username = $1', [query_data.username], (error, results) => {
+const getUser = (username) => {
+    //const query_data = URL.parse(request.url, true).query;
+    console.log(username);
+    pool.query('SELECT * FROM persons WHERE username = $1', [username], (error, results) => {
     if(error) {
         throw(error)
     }
-    response.status(200).json(results.rows)
+    return results.rows[0];
+    //response.status(200).json(results.rows)
   });
 }
 
-const createUser = (request, response) => {
-  const query_data = URL.parse(request.url, true).query;
+const createUser = (password, username, first_name, last_name, email) => {
     pool.query('INSERT INTO persons (password, username, first_name, last_name, email) values ($1, $2, $3, $4, $5)', 
-      [query_data.password, query_data.username, query_data.first_name, query_data.last_name, query_data.email], (error, results) => {
+      [password, username, first_name, last_name, email], (error, results) => {
       if (error) {
         throw error
       }
-      response.status(201).send(`User added with ID: ${result.insertId}`)
+      //response.status(201).send(`User added with ID: ${result.insertId}`)
+      return result.insertId;
     })
 }
 
-const getGamesByUser = (request, response) => {
-    const query_data = URL.parse(request.url, true).query;
+const getGamesByUser = (username) => {
     pool.query('SELECT * FROM game AS gm\
                 JOIN persons AS pe ON (gm.person_id = pe.person_id) \
-                WHERE pe.username = $1  ORDER BY game_id ASC',[query_data.username], (error, results) => {
+                WHERE pe.username = $1  ORDER BY game_id ASC',[username], (error, results) => {
       if (error) {
         throw error
       }
-      response.status(200).json(results.rows)
+      return results.rows;
     })
   }
 
-const getGames = (request, response) => {
+const getGames = () => {
     pool.query('SELECT * FROM game ORDER BY id ASC', (error, results) => {
       if (error) {
-        throw error
+        throw error;
       }
-      response.status(200).json(results.rows)
+      return results.rows;
     })
   }
 

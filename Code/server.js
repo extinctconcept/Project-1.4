@@ -7,10 +7,9 @@ const LOGIN = require("./login.js");
 const COOKIES = require("./cookie.js");
 const PROFILE = require("./profile.js");
 const CORS = require('cors');
-const REQUEST = require("request");
+const db = require('./queries')
 
 const hostname = '127.0.0.1';
-const db = require('./html/static/queries')
 const port = 3000;
 const app = EXPRESS();
 
@@ -51,7 +50,7 @@ app.use('/login', LOGIN.login);
 app.use('/register', LOGIN.register);
 app.use('/logout|/logout.html', LOGIN.logout);
 app.use('/profile.html', PROFILE.profile);
-app.use('/profile/:username', PROFILE.view_profile);
+app.use('/getprofile', PROFILE.view_profile);
 app.use(EXPRESS.static("html/static"));
 app.use('/games', Query_Games_Api);
 app.get('/getusers', db.getUsers);

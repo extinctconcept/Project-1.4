@@ -25,5 +25,5 @@ module.exports.view_profile = function(req,res,next)
     var username = req.params.username;
     //Some sort of code for getting a profile that is different than the users.
     //var query_data = URL.parse(req.url,true).query;
-    next();
+    res.send("[]");
 }

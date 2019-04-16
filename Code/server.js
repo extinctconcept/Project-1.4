@@ -10,6 +10,7 @@ const CORS = require('cors');
 const REQUEST = require("request");
 
 const hostname = '127.0.0.1';
+const db = require('./html/static/queries')
 const port = 3000;
 const app = EXPRESS();
 
@@ -53,8 +54,15 @@ app.use('/profile.html', PROFILE.profile);
 app.use('/profile/:username', PROFILE.view_profile);
 app.use(EXPRESS.static("html/static"));
 app.use('/games', Query_Games_Api);
+app.get('/getusers', db.getUsers);
+app.get('/getuser/', db.getUser);
+app.get('/getgames', db.getGames);
+app.get('/getgamesbyuser/', db.getGamesByUser);
+app.post('/createUser', db.createUser);
 app.use(function (req, res, next) {
   res.redirect("/index.html");
 })
+
+
 
 app.listen(port, () => console.log(`Server listening on port ${port}!`))

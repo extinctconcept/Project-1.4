@@ -10,6 +10,7 @@ const CORS = require('cors');
 const REQUEST = require("request");
 
 const hostname = '127.0.0.1';
+const db = require('./queries')
 const port = 3000;
 const app = EXPRESS();
 
@@ -56,6 +57,7 @@ app.use('/games', Query_Games_Api);
 app.use(function (req, res, next) {
   res.redirect("/index.html");
 })
+
 app.use(bodyParser.json())
 app.use(
   bodyParser.urlencoded({
@@ -66,5 +68,7 @@ app.use(
 app.get('/', (request, response) => {
   response.json({ info: 'Node.js, Express, and Postgres API' })
 })
+
+app.get('/users', db.getUsers)
 
 app.listen(port, () => console.log(`Server listening on port ${port}!`))

@@ -17,7 +17,7 @@ const getUsers = (request, response) => {
   }
 
 const getUser = (request, response) => {
-    console.log(request.params.username)
+    console.log(request.params.user)
     const username = request.params.username
     pool.query('SELECT * FROM persons WHERE username = $1', [username])
     if(error) {

@@ -29,16 +29,9 @@ const getUser = (request, response) => {
 }
 
 const createUser = (request, response) => {
-  const {
-    password,
-    username,
-    first_name,
-    last_name,
-    email
-    } = request.body
-
+  const query_data = URL.parse(request.url, true).query;
     pool.query('INSERT INTO persons (password, username, first_name, last_name, email) values ($1, $2, $3, $4, $5)', 
-      [password, username, first_name, last_name, email], (error, results) => {
+      [query_data.password, query_data.username, query_data.first_name, query_data.last_name, query_data.email], (error, results) => {
       if (error) {
         throw error
       }

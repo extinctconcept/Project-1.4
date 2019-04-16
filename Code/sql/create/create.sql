@@ -1,22 +1,22 @@
 CREATE TABLE public.persons
 (
-  person_id     integer    NOT NULL,
+  person_id     SERIAL     NOT NULL,
   password      varchar	   NOT NULL,
   username      varchar    NOT NULL,
   first_name    varchar    NOT NULL,
   last_name     varchar    NOT NULL,
   email         varchar    NOT NULL,
-  phone         integer    NOT NULL,
-  city          varchar    NOT NULL,
-  state         varchar    NOT NULL,
-  zip           integer    NOT NULL,
+  phone         integer,
+  city          varchar,
+  state         varchar,
+  zip           integer,
   CONSTRAINT person_id PRIMARY KEY (person_id),
   CONSTRAINT person_id UNIQUE (person_id)
 );
 
 CREATE TABLE public.game
 (
-  game_id       integer     NOT NULL,
+  game_id       SERIAL      NOT NULL,
   person_id     integer     NOT NULL,
   title         varchar     NOT NULL,
   player_count  integer,
@@ -30,7 +30,7 @@ CREATE TABLE public.game
 
 CREATE TABLE public.exchange
 (
-  exchange_id   integer     NOT NULL,
+  exchange_id   SERIAL      NOT NULL,
   owner_id      integer     NOT NULL,
   borrower_id   integer     NOT NULL,
   game_id       integer     NOT NULL,

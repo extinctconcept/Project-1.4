@@ -17,13 +17,31 @@ const getUsers = (request, response) => {
   }
 
 const getUser = (request, response) => {
-    console.log(request.params.user)
-    const username = request.params.username
+    const username = request.body
     pool.query('SELECT * FROM persons WHERE username = $1', [username])
     if(error) {
         throw(error)
     }
     response.status(200).json(results.rows)
+}
+
+const createUser = (request, response) => {
+  const {
+    password,
+    username,
+    first_name,
+    last_name,
+    email
+    } = request.body
+
+    pool.query('INSERT INTO persons (password, username, first_name, last_name, email) values ($1, $2, $3, $4, $5)', 
+      [password, username, first_name, last_name, email], (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(201).send(`User added with ID: ${result.insertId}`)
+    })
+
 }
 
 const getGames = (request, response) => {
@@ -71,6 +89,7 @@ const createGame = (request, response) => {
   }
 
 module.exports = {
+  createUser,
   getUsers,
   getUser,
   getGames,

@@ -58,16 +58,12 @@ app.use(function (req, res, next) {
   res.redirect("/index.html");
 })
 
-app.use(bodyParser.json())
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-)
-
-app.get('/', (request, response) => {
-  response.json({ info: 'Node.js, Express, and Postgres API' })
-})
+// app.use(bodyParser.json())
+// app.use(
+//   bodyParser.urlencoded({
+//     extended: true,
+//   })
+// )
 
 app.get('/users', db.getUsers)
 

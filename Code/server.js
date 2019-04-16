@@ -10,7 +10,7 @@ const CORS = require('cors');
 const REQUEST = require("request");
 
 const hostname = '127.0.0.1';
-const db = require('./queries')
+const db = require('./html/static/queries')
 const port = 3000;
 const app = EXPRESS();
 

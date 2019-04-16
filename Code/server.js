@@ -55,7 +55,7 @@ app.use('/profile/:username', PROFILE.view_profile);
 app.use(EXPRESS.static("html/static"));
 app.use('/games', Query_Games_Api);
 app.get('/getusers', db.getUsers);
-app.get('/getuser:user', db.getUser);
+app.get('/getuser/:username', db.getUser);
 app.get('/getgames', db.getGames);
 app.post('/createUser', db.createUser);
 app.use(function (req, res, next) {

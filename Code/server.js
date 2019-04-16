@@ -54,17 +54,11 @@ app.use('/profile.html', PROFILE.profile);
 app.use('/profile/:username', PROFILE.view_profile);
 app.use(EXPRESS.static("html/static"));
 app.use('/games', Query_Games_Api);
+app.get('/getusers', db.getUsers);
 app.use(function (req, res, next) {
   res.redirect("/index.html");
 })
 
-// app.use(bodyParser.json())
-// app.use(
-//   bodyParser.urlencoded({
-//     extended: true,
-//   })
-// )
 
-app.get('/users', db.getUsers)
 
 app.listen(port, () => console.log(`Server listening on port ${port}!`))

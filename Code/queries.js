@@ -20,13 +20,12 @@ const getUsers = () => {
 
 const getUser = (username) => {
     //const query_data = URL.parse(request.url, true).query;
-    console.log(username);
     pool.query('SELECT * FROM persons WHERE username = $1', [username], (error, results) => {
     if(error) {
         throw(error)
     }
-    // return results.rows[0];
-    console.log(results.rows[0]);
+    return results.rows[0];
+    // console.log(results.rows[0]);
     //response.status(200).json(results.rows)
   });
 }

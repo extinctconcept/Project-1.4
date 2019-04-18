@@ -29,7 +29,7 @@ module.exports.view_profile = function(req,res,next)
     res.send("[]");
 }
 
-module.exports.get_profile_games(req, res, next)
+module.exports.get_profile_games = function(req, res, next)
 {
     var cookies = new COOKIES(req,res);
     sessionID = cookies.get('key');

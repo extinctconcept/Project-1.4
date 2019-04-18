@@ -14,7 +14,7 @@ const getUsers = () => {
         throw error
       }
       //response.status(200).json(results.rows)
-      return results.rows;
+      console.log(results.rows)
     })
   }
 
@@ -25,7 +25,8 @@ const getUser = (username) => {
     if(error) {
         throw(error)
     }
-    return results.rows[0];
+    // return results.rows[0];
+    console.log(results.rows[0]);
     //response.status(200).json(results.rows)
   });
 }
@@ -37,7 +38,8 @@ const createUser = (password, username, first_name, last_name, email) => {
         throw error
       }
       //response.status(201).send(`User added with ID: ${result.insertId}`)
-      return result.insertId;
+      // return results.insertId;
+      console.log(results.insertId);
     })
 }
 
@@ -48,7 +50,8 @@ const getGamesByUser = (username) => {
       if (error) {
         throw error
       }
-      return results.rows;
+      // return results.rows;
+      console.log(results.rows);
     })
   }
 
@@ -57,7 +60,8 @@ const getGames = () => {
       if (error) {
         throw error;
       }
-      return results.rows;
+      // return results.rows;
+      console.log(results.rows);
     })
   }
 
@@ -66,7 +70,8 @@ const getPersonId = () => {
     if(error) {
       throw error;
     }
-    return results.rows
+    // return results.rows
+    console.log(results.rows);
   })
 }
 
@@ -77,7 +82,8 @@ const createGame = (request, response) => {
         throw error
       }
       //response.status(201).send(`User added with ID: ${result.insertId}`)
-      return result.insertId;
+      // return results.insertId;
+      console.log(results.insertId);
     })
 }
 

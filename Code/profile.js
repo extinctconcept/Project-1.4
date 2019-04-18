@@ -46,7 +46,7 @@ module.exports.get_profile_games = function(req, res, next)
     }
 }
 
-module.exports.add_profile_games(req,res,next)
+module.exports.add_profile_games = function(req,res,next)
 {
 
 }

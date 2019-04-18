@@ -13,8 +13,6 @@ function Query_Login(username, password)
         //return username == 'test' && password == 'test';
 }
 
-module.exports.Query_Login = Query_Login;
-
 function Query_Register(username,password)
 {
     if(logins[username] !== undefined)
@@ -25,6 +23,7 @@ function Query_Register(username,password)
 }
 
 module.exports.Query_Register = Query_Register;
+module.exports.Query_Login = Query_Login;
 
 module.exports.login = function(req, res, next)
 {

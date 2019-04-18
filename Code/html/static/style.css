@@ -1,8 +1,11 @@
-html, body {
-  width: 100%;
-  height: 100%;
+* {
+  /* width: 100%;
+  height: 100%; */
   margin: 0;
   padding: 0;
+}
+
+body {
   background-color: #fefefe;
   font-family: helvetica, sans-serif;
   font-size: 1em;
@@ -50,7 +53,6 @@ li a {
 
 .dropdown {
   position: relative;
-  display: inline-inline-block;
 }
 
 li a:hover {
@@ -146,6 +148,10 @@ h2 {
 
 h3 {
   font-weight: lighter;
+}
+
+p {
+    text-align: center;
 }
 
 table {
@@ -258,6 +264,21 @@ table, th, td {
 	 cursor: auto;
 	 visibility: visible;
 	 box-shadow: 0 3px 7px rgba(0, 0, 0, 0.6);
+}
+.list_item {
+  margin: 20px;
+}
+.list_image {
+  display: inline-block;
+  padding-right: 20px;
+  vertical-align: middle;
+}
+.list_text {
+  font-size: 20;
+  font-weight: bold;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
 }
 @@media (max-width: 400px) {
   #popup_toggle.active ~ .add_game, #popup_toggle:checked ~ .add_game {

@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "pi",
+    "password": "Project4321",
+    "database": "project",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "pi",
+    "password": "Project4321",
+    "database": "project",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "pi",
+    "password": "Project4321",
+    "database": "project",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}

@@ -9,9 +9,9 @@ function Display_Games(arr)
     display.innerHTML = "<p>TOP GAMES!!!!!!:</p>";
     arr.forEach(element => {
         if(element.cover === undefined)
-            display.innerHTML += "<p>" + element.name + "<p>";
+            display.innerHTML += "<div class=\"list_item, list_text\">" + element.name + "<div>";
         else
-            display.innerHTML += "<p>" + "<img src='" + element.cover.url + "'>" + element.name + " " + "<p>";
+            display.innerHTML += "<div class=\"list_item\">" + "<img class= \"list_image\" src='" + element.cover.url + "'>" + "<div class=\"list_text\">" + element.name + "<div>" + "<div>";
     });
 }
 

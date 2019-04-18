@@ -6,7 +6,7 @@ let helloResult = header.sayHello();
 let numberResult = header.addNumbers(5, 5);
 
 describe('header.js', function () {
-    describe('sayHello()', function () {
+    describe('importantTestOne()', function () {
         it('sayHello should return hello', function () {
             assert.equal(helloResult, 'hello')
         });
@@ -18,7 +18,7 @@ describe('header.js', function () {
 
 
 
-    describe('addNumbers()', function () {
+    describe('importantTestOne()', function () {
         it('addNumbers should be > 5', function () {
             assert.isAbove(numberResult, 5);
         })

@@ -87,6 +87,6 @@ module.exports = {
   getUser,
   getGames,
   getGamesByUser,
-  creatGeam,
+  createGame,
   getPersonId,
 }

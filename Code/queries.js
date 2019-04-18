@@ -61,22 +61,24 @@ const getGames = () => {
     })
   }
 
-const createGame = (request, response) => {
-  // const {
-  //   password,
-  //   username,
-  //   first_name,
-  //   last_name,
-  //   email
-  //   } = request.body
+const getPersonId = () => {
+  pool.query('SELECT person_id FROM persons WHERE username = $1', [username], (error, results) => {
+    if(error) {
+      throw error;
+    }
+    return results.rows
+  })
+}
 
-  //   pool.query('INSERT INTO persons (password, username, first_name, last_name, email) values ($1, $2, $3, $4, $5)', 
-  //     [password, username, first_name, last_name, email], (error, results) => {
-  //     if (error) {
-  //       throw error
-  //     }
-  //     response.status(201).send(`User added with ID: ${result.insertId}`)
-  //   })  
+const createGame = (request, response) => {
+    pool.query('INSERT INTO game (person_id, title) values ($1, $2)', 
+      [person_id, title], (error, results) => {
+      if (error) {
+        throw error
+      }
+      //response.status(201).send(`User added with ID: ${result.insertId}`)
+      return result.insertId;
+    })
 }
 
 module.exports = {
@@ -85,4 +87,6 @@ module.exports = {
   getUser,
   getGames,
   getGamesByUser,
+  creatGeam,
+  getPersonId,
 }

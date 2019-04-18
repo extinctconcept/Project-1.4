@@ -13,6 +13,7 @@ describe('queries.js', function () {
         });
         it('Should return false if username and password dont match match', function () {
             let testUser = db.getUser('Polymorph');
+            console.log(testUser)
             assert.equal(testUser.username, 'Polymorph');
         });
         it('Should take less than 500ms', function(done) {

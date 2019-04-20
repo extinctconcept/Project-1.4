@@ -31,7 +31,9 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: Sequalize.DATE
     }
-  }, {});
+  }, {
+        timestamps: false
+  });
   exchange.associate = function(models) {
     // associations can be defined here
     exchange.belongsTo(models.persons, {

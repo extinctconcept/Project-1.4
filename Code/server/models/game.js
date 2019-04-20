@@ -25,7 +25,9 @@ module.exports = (sequelize, DataTypes) => {
         type: Sequelize.STRING
     },
     availability_id: DataTypes.INTEGER
-  }, {});
+  }, {
+        timestamps: false
+  });
   game.associate = function(models) {
     // associations can be defined here
        game.belongsTo(models.persons, {

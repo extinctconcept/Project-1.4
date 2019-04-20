@@ -13,7 +13,9 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: Sequelize.INTEGER
     },
-  }, {});
+  }, {
+      timestamps: false
+  });
   game_availability.associate = function(models) {
     // associations can be defined here
   };

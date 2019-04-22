@@ -46,8 +46,8 @@ module.exports.createUser = (password, username, first_name, last_name, email, c
 
 module.exports.getGamesByUser = (username, callback) => {
    pool.query('SELECT * FROM game AS gm\
-                JOIN persons AS pe ON (gm.person_id = pe.person_id) \
-                JOIN exchange AS ex ON (pe.person_id = ex.owner_id) \
+                LEFT JOIN persons AS pe ON (gm.person_id = pe.person_id) \
+                LEFT JOIN exchange AS ex ON (pe.person_id = ex.owner_id) \
                 WHERE pe.username = $1  ORDER BY game_id ASC',[username], (error, results) => {
       if (error) {
         results = {};//throw error

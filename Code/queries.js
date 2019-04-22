@@ -97,7 +97,7 @@ module.exports.createGame = (username, title, callback) => {
 
 // this should be called when someone wants to borrow a game
 // you need to pass in the user's id who is making the request as well as the owners id 
-const createExchange = (reqeust, response) => {
+module.exports.createExchange = (reqeust, response) => {
   pool.query('INSERT INTO exchange (owner_id, borrower_id, game_id, exchange_date, return_date) \
               VALUES ($1, $2, $3, current_date, current_date + 14)',
   [owner_id, borrower_id, game_id],(error,results) => {
@@ -109,6 +109,7 @@ const createExchange = (reqeust, response) => {
   })
 }
 
+/*
 module.exports = {
   createUser,
   createGame,
@@ -118,4 +119,4 @@ module.exports = {
   getGames,
   getGamesByUser,
   getPersonId,
-}
+}*/

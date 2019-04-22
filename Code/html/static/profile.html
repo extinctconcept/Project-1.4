@@ -18,22 +18,23 @@
 		<div class="add_game">
 			<label class="popup_close" for="popup_toggle">&#x2715;</label>
 			<h1>Add Game</h1>
-			<form action="/addgame" method="get">
+			<form>
 				<label>Game Title: </label>
 				<input type="text" id="game_name" name="game_name" required>
-				<label class="popup_content_button" for="popup_toggle" onclick="addgame.js">OK</label>
+				<label class="popup_content_button" for="popup_toggle" onclick="addGame()">OK</label>
 			</form>
 		</div>
 	</div>
-	
-    <table>
-			<thead>
-      <tr>
-        <th>Owned Games:</th>
-        <th>Sample Game 1</th>
-				<th>Sample Game 2</th>
-      </tr>
-    </table>
+
+	<div>Pending Requests/Borrowed Games:</div>
+	<div>Requested Games:</div>
+	<div>Owned Games:</div>
+
+	<script>
+	function addGame() {
+
+	}
+	</script>
 
 	</body>
 

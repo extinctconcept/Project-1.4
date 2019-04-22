@@ -14,7 +14,7 @@ module.exports.getUsers = (callback) => {
         results = {};//throw error
       }
       //response.status(200).json(results.rows)
-      console.log(results.rows);
+      // console.log(results.rows);
       callback(results.rows);
     })
   }
@@ -25,7 +25,7 @@ module.exports.getUser = (username, callback) => {
     if(error) {
         //throw(error)
     }
-    console.log(results.rows[0]);
+    // console.log(results.rows[0]);
     callback(results.rows[0]);
     //response.status(200).json(results.rows)
   });
@@ -39,7 +39,7 @@ module.exports.createUser = (password, username, first_name, last_name, email, c
       }
       //response.status(201).send(`User added with ID: ${result.insertId}`)
       // callback(results.insertId;
-      console.log(results.insertId);
+      // console.log(results.insertId);
       callback(results.insertId);
     })
 }
@@ -54,7 +54,7 @@ module.exports.getGamesByUserExchange = (username, callback) => {
        results = {};//throw error
      }
      
-     console.log(results.rows);
+    //  console.log(results.rows);
      callback(results.rows);
    })
  }
@@ -75,7 +75,7 @@ module.exports.getGamesByUser = (username, callback) => {
         results = {};//throw error
       }
       
-      console.log(results.rows);
+      // console.log(results.rows);
       callback(results.rows);
     })
   }
@@ -85,7 +85,7 @@ module.exports.getGames = (callback) => {
       if (error) {
         results = {};//throw error;
       }
-      console.log(results.rows);
+      // console.log(results.rows);
       callback(results.rows);
     })
   }
@@ -96,7 +96,7 @@ let getPersonId = (username, callback) => {
       results = {};//throw error;
     }
     // callback(results.rows
-    console.log(results.rows);
+    // console.log(results.rows);
     callback(results.row[0].person_id);
   })
 }
@@ -112,7 +112,7 @@ module.exports.createGame = (username, title, callback) => {
       }
       //response.status(201).send(`User added with ID: ${result.insertId}`)
       // callback(results.insertId;
-      console.log(results.insertId);
+      // console.log(results.insertId);
       callback(results.insertId);
     })
 }
@@ -126,7 +126,7 @@ module.exports.createExchange = (reqeust, response) => {
     if(error) {
       throw error;
     }
-    console.log(results.insertId);
+    // console.log(results.insertId);
     callback(results.insertId)
   })
 }
@@ -137,7 +137,7 @@ module.exports.deleteExchange = (reqeust, response) => {
     if(error) {
       throw error;
     }
-    console.log(results);
+    // console.log(results);
     callback(results)
   })
 }
@@ -149,7 +149,7 @@ module.exports.modifyGameExchangeType = (request, response) => {
       if(error) {
         throw error;
       }
-      console.log(results);
+      // console.log(results);
       callback(results)
     })
 }

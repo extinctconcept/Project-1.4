@@ -12,7 +12,14 @@ function Query_Login(username, password)
 {
     let database_pass;
     DB.getUser(username, (result) => {database_pass = result;});
-    return password == database_pass.password;
+    if(!database_pass)
+    {
+        return false;
+    }
+    else
+    {
+        return password == database_pass.password;
+    }
 
         return logins[username] == password;
         //return username == 'test' && password == 'test';

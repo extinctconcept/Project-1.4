@@ -61,6 +61,7 @@ app.get('/getgamesbyuser/', db.getGamesByUser);
 app.get('/getgameswithexchange', db.getGamesByUserExchange);
 app.post('/createUser', db.createUser);
 app.post('/createExchange', db.createExchange);
+app.post('/deleteexchange', db.deleteExchange);
 app.use(function (req, res, next) {
   res.redirect("/index.html");
 })

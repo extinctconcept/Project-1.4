@@ -11,10 +11,11 @@ const pool = new Pool({
 const getUsers = () => {
     pool.query('SELECT * FROM persons ORDER BY person_id ASC', (error, results) => {
       if (error) {
-        throw error
+        //throw error
       }
       //response.status(200).json(results.rows)
-      console.log(results.rows)
+      console.log(results.rows);
+      return results.rows;
     })
   }
 
@@ -22,7 +23,7 @@ const getUser = (username) => {
     //const query_data = URL.parse(request.url, true).query;
     pool.query('SELECT * FROM persons WHERE username = $1', [username], (error, results) => {
     if(error) {
-        throw(error)
+        //throw(error)
     }
     return results.rows[0];
     // console.log(results.rows[0]);
@@ -34,11 +35,12 @@ const createUser = (password, username, first_name, last_name, email) => {
     pool.query('INSERT INTO persons (password, username, first_name, last_name, email) values ($1, $2, $3, $4, $5)', 
       [password, username, first_name, last_name, email], (error, results) => {
       if (error) {
-        throw error
+        //throw error
       }
       //response.status(201).send(`User added with ID: ${result.insertId}`)
       // return results.insertId;
       console.log(results.insertId);
+      return results.insertId;
     })
 }
 
@@ -47,30 +49,32 @@ const getGamesByUser = (username) => {
                 JOIN persons AS pe ON (gm.person_id = pe.person_id) \
                 WHERE pe.username = $1  ORDER BY game_id ASC',[username], (error, results) => {
       if (error) {
-        throw error
+        //throw error
       }
-      // return results.rows;
+      
       console.log(results.rows);
+      return results.rows;
     })
   }
 
 const getGames = () => {
     pool.query('SELECT * FROM game ORDER BY game_id ASC', (error, results) => {
       if (error) {
-        throw error;
+        //throw error;
       }
-      // return results.rows;
       console.log(results.rows);
+      return results.rows;
     })
   }
 
 const getPersonId = () => {
   pool.query('SELECT person_id FROM persons WHERE username = $1', [username], (error, results) => {
     if(error) {
-      throw error;
+      //throw error;
     }
     // return results.rows
     console.log(results.rows);
+    return results.row[0];
   })
 }
 
@@ -78,11 +82,12 @@ const createGame = (request, response) => {
     pool.query('INSERT INTO game (person_id, title) values ($1, $2)', 
       [person_id, title], (error, results) => {
       if (error) {
-        throw error
+        //throw error
       }
       //response.status(201).send(`User added with ID: ${result.insertId}`)
       // return results.insertId;
       console.log(results.insertId);
+      return results.insertId;
     })
 }
 

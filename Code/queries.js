@@ -13,8 +13,8 @@ const getUsers = () => {
       if (error) {
         throw error
       }
-      //response.status(200).json(results.rows)
       console.log(results.rows)
+      response.status(200).json(results.rows)
     })
   }
 
@@ -37,20 +37,21 @@ const createUser = (password, username, first_name, last_name, email) => {
         throw error
       }
       //response.status(201).send(`User added with ID: ${result.insertId}`)
-      // return results.insertId;
       console.log(results.insertId);
+      return results.insertId;
     })
 }
 
 const getGamesByUser = (username) => {
     pool.query('SELECT * FROM game AS gm\
                 JOIN persons AS pe ON (gm.person_id = pe.person_id) \
+                JOIN exchange AS ex ON (pe.person_id = ex.owner_id) \
                 WHERE pe.username = $1  ORDER BY game_id ASC',[username], (error, results) => {
       if (error) {
         throw error
       }
-      // return results.rows;
       console.log(results.rows);
+      return results.rows;
     })
   }
 
@@ -59,8 +60,8 @@ const getGames = () => {
       if (error) {
         throw error;
       }
-      // return results.rows;
       console.log(results.rows);
+      return results.rows;
     })
   }
 
@@ -69,29 +70,44 @@ const getPersonId = () => {
     if(error) {
       throw error;
     }
-    // return results.rows
     console.log(results.rows);
+    return results.rows
   })
 }
 
 const createGame = (request, response) => {
-    pool.query('INSERT INTO game (person_id, title) values ($1, $2)', 
+    pool.query('INSERT INTO game (person_id, title) VALUES ($1, $2)', 
       [person_id, title], (error, results) => {
       if (error) {
         throw error
       }
       //response.status(201).send(`User added with ID: ${result.insertId}`)
-      // return results.insertId;
       console.log(results.insertId);
+      return results.insertId;
     })
+}
+
+// this should be called when someone wants to borrow a game
+// you need to pass in the user's id who is making the request as well as the owners id 
+const createExchange = (reqeust, response) => {
+  pool.query('INSERT INTO exchange (owner_id, borrower_id, game_id, exchange_date, return_date) \
+              VALUES ($1, $2, $3, current_date, current_date + 14)',
+  [owner_id, borrower_id, game_id],(error,results) => {
+  if(error) {
+    throw error;
+  }
+  console.log(results.rows);
+  return results.rows
+  })
 }
 
 module.exports = {
   createUser,
+  createGame,
+  createExchange,
   getUsers,
   getUser,
   getGames,
   getGamesByUser,
-  createGame,
   getPersonId,
 }

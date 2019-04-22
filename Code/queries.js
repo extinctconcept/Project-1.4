@@ -115,12 +115,23 @@ module.exports.createGame = (username, title, callback) => {
 module.exports.createExchange = (reqeust, response) => {
   pool.query('INSERT INTO exchange (owner_id, borrower_id, game_id, exchange_date, return_date) \
               VALUES ($1, $2, $3, current_date, current_date + 14)',
-  [owner_id, borrower_id, game_id],(error,results) => {
-  if(error) {
-    throw error;
-  }
-  console.log(results.rows);
-  return results.rows
+    [owner_id, borrower_id, game_id],(error,results) => {
+    if(error) {
+      throw error;
+    }
+    console.log(results.insertId);
+    callback(results.insertId)
+  })
+}
+
+// only the owner should be able to do this
+module.exports.deleteExchange = (reqeust, response) => {
+  pool.query('DELETE FROM exchange WHERE exchange_id = $1', [exchange_id], (error,results) => {
+    if(error) {
+      throw error;
+    }
+    console.log(results);
+    callback(results)
   })
 }
 

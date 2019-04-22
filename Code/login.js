@@ -10,6 +10,8 @@ var sessionID = 1;
 
 function Login_Success(res,req,next)
 {
+    var query_data = URL.parse(req.url, true).query;
+    console.log(query_data);
     var cookies = new COOKIES(req, res);
     cookies.set('key', sessionID, { httpOnly: false });
     sessions[sessionID] = query_data.username;
@@ -55,8 +57,6 @@ module.exports.Query_Login = Query_Login;
 
 module.exports.login = function(req, res, next)
 {
-    var query_data = URL.parse(req.url, true).query;
-    console.log(query_data);
     Query_Login(query_data.username, query_data.password,res,req,next);
 }
 

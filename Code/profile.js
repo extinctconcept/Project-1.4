@@ -34,6 +34,7 @@ module.exports.get_profile_games = function(req, res, next)
     var cookies = new COOKIES(req,res);
     sessionID = cookies.get('key');
     console.log("Games of: " + sessionID + " " + LOGIN.sessions[sessionID]);
+    res.setHeader('Content-Type', 'application/json');
     if(!sessionID || !LOGIN.sessions[sessionID])
     {
         res.send("[]");
@@ -44,12 +45,27 @@ module.exports.get_profile_games = function(req, res, next)
         if(!games)
             games = [];
         console.log(games);
-        res.setHeader('Content-Type', 'application/json');
         res.send(JSON.stringify(games));
     }
 }
 
 module.exports.add_profile_games = function(req,res,next)
 {
+    
+    var query_data = URL.parse(req.url, true).query;
+    let title = query_data.title;
 
+    var cookies = new COOKIES(req,res);
+    sessionID = cookies.get('key');
+    console.log("Add game to: " + sessionID + " " + LOGIN.sessions[sessionID]);
+    res.setHeader('Content-Type', 'application/json');
+    if(!sessionID || !LOGIN.sessions[sessionID])
+    {
+        res.send("0");
+    }
+    else
+    {
+        let game_id = db.createGame(LOGIN.sessions[sessionID], title);
+        res.send(JSON.stringify(game_id));
+    }
 }

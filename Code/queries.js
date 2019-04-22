@@ -67,7 +67,7 @@ const getGames = () => {
     })
   }
 
-const getPersonId = () => {
+const getPersonId = (username) => {
   pool.query('SELECT person_id FROM persons WHERE username = $1', [username], (error, results) => {
     if(error) {
       results = {};//throw error;
@@ -78,7 +78,9 @@ const getPersonId = () => {
   })
 }
 
-const createGame = (request, response) => {
+const createGame = (username, title) => {
+    let person_id = getPersonId(username);
+    console.log("id is: " + person_id);
     pool.query('INSERT INTO game (person_id, title) values ($1, $2)', 
       [person_id, title], (error, results) => {
       if (error) {

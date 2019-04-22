@@ -65,7 +65,8 @@ module.exports.add_profile_games = function(req,res,next)
     }
     else
     {
-        let game_id = db.createGame(LOGIN.sessions[sessionID], title);
+        let game_id;
+        db.createGame(LOGIN.sessions[sessionID], title, (result) => {game_id = result;});
         res.send(JSON.stringify(game_id));
     }
 }

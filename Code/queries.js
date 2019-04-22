@@ -21,14 +21,14 @@ module.exports.getUsers = () => {
 
 module.exports.getUser = (username) => {
     //module.exports.query_data = URL.parse(request.url, true).query;
-     pool.query('SELECT * FROM persons WHERE username = $1', [username], (error, results) => {
+    console.log(pool.query('SELECT * FROM persons WHERE username = $1', [username], (error, results) => {
     if(error) {
         //throw(error)
     }
     console.log(results.rows[0]);
     return results.rows[0];
     //response.status(200).json(results.rows)
-  });
+  }));
 }
 
 module.exports.createUser = (password, username, first_name, last_name, email) => {

@@ -41,7 +41,8 @@ module.exports.get_profile_games = function(req, res, next)
     }
     else
     {
-        let games = db.getGamesByUser(LOGIN.sessions[sessionID]);
+        let games;
+        db.getGamesByUser(LOGIN.sessions[sessionID], (result) => {games = result});
         if(!games)
             games = [];
         console.log(games);

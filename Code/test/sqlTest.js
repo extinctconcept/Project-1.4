@@ -15,6 +15,7 @@ db.getUser('Polymorph', callback);
 
 describe('queries.js', function () {
     describe('getUser()', function () {
+        console.log(testUser);
         it('Should return true if anything is returned', function () {
             assert.isNotNull(testUser, "There was not error")
         });

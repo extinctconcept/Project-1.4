@@ -74,7 +74,7 @@ module.exports.getPersonId = (username, callback) => {
     }
     // callback(results.rows
     console.log(results.rows);
-    callback(results.row[0]);
+    callback(results.row[0].person_id);
   })
 }
 

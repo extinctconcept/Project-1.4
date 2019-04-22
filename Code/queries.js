@@ -79,7 +79,8 @@ module.exports.getPersonId = (username, callback) => {
 }
 
 module.exports.createGame = (username, title, callback) => {
-    let person_id = getPersonId(username);
+    let id;
+    module.exports.getPersonId(username, (result) => {id = result;});
     console.log("id is: " + person_id);
     pool.query('INSERT INTO game (person_id, title) values ($1, $2)', 
       [person_id, title], (error, results) => {

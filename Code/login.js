@@ -8,13 +8,11 @@ var logins = { 'test': 'test' };
 var sessions = ['test'];
 var sessionID = 1;
 
-function Login_Success(res,req,next)
+function Login_Success(username, res,req,next)
 {
-    var query_data = URL.parse(req.url, true).query;
-    console.log(query_data);
     var cookies = new COOKIES(req, res);
     cookies.set('key', sessionID, { httpOnly: false });
-    sessions[sessionID] = query_data.username;
+    sessions[sessionID] = username;
     sessionID += 1;
 
     EXPRESS.static("html/static/profile.html")(req, res, next);
@@ -31,7 +29,7 @@ function Query_Login(username, password,res,req,next)
     DB.getUser(username, (result) => {
         if(password == result.password)
         {
-            Login_Success(res, req, next);
+            Login_Success(username, res, req, next);
         }
         else
         {
@@ -57,6 +55,8 @@ module.exports.Query_Login = Query_Login;
 
 module.exports.login = function(req, res, next)
 {
+    var query_data = URL.parse(req.url, true).query;
+    console.log(query_data);
     Query_Login(query_data.username, query_data.password,res,req,next);
 }
 

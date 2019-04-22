@@ -24,10 +24,6 @@ describe('queries.js', function () {
             assert.equal(testUser.username, 'Polymorph');
         });
         console.log(testUser)
-        it('Should take less than 500ms', function(done) {
-            this.timeout(500);
-            setTimeout(done, 300);
-          });
     });
 
 });

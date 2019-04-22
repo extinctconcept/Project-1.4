@@ -5,6 +5,7 @@ const db = require('../queries');
 // let userCheckTrue = login.Query_Login('test','test');
 // let userCheckFalse = login.Query_Login('test','st');
 var testUser = db.getUser('Polymorph');
+console.log(testUser);
 console.log(db);
 
 describe('queries.js', function () {

@@ -1,5 +1,5 @@
 const URL = require('url');
-const Pool = require('pg').Pool
+const {Pool} = require('pg');
 const pool = new Pool({
   user: 'pi',
   host: 'localhost',
@@ -8,82 +8,90 @@ const pool = new Pool({
   port: 5432,
 })
 
-const getUsers = () => {
-    pool.query('SELECT * FROM persons ORDER BY person_id ASC', (error, results) => {
+module.exports.getUsers = (callback) => {
+   pool.query('SELECT * FROM persons ORDER BY person_id ASC', (error, results) => {
       if (error) {
-        throw error
+        results = {};//throw error
       }
-      console.log(results.rows)
-      response.status(200).json(results.rows)
+      //response.status(200).json(results.rows)
+      console.log(results.rows);
+      callback(results.rows);
     })
   }
 
-const getUser = (username) => {
-    //const query_data = URL.parse(request.url, true).query;
+module.exports.getUser = (username, callback) => {
+    //module.exports.query_data = URL.parse(request.url, true).query;
     pool.query('SELECT * FROM persons WHERE username = $1', [username], (error, results) => {
     if(error) {
-        throw(error)
+        //throw(error)
     }
-    return results.rows[0];
-    // console.log(results.rows[0]);
+    console.log(results.rows[0]);
+    callback(results.rows[0]);
     //response.status(200).json(results.rows)
   });
 }
 
-const createUser = (password, username, first_name, last_name, email) => {
-    pool.query('INSERT INTO persons (password, username, first_name, last_name, email) values ($1, $2, $3, $4, $5)', 
+module.exports.createUser = (password, username, first_name, last_name, email, callback) => {
+   pool.query('INSERT INTO persons (password, username, first_name, last_name, email) values ($1, $2, $3, $4, $5)', 
       [password, username, first_name, last_name, email], (error, results) => {
       if (error) {
-        throw error
+        results = {};//throw error
       }
       //response.status(201).send(`User added with ID: ${result.insertId}`)
+      // callback(results.insertId;
       console.log(results.insertId);
-      return results.insertId;
+      callback(results.insertId);
     })
 }
 
-const getGamesByUser = (username) => {
-    pool.query('SELECT * FROM game AS gm\
+module.exports.getGamesByUser = (username, callback) => {
+   pool.query('SELECT * FROM game AS gm\
                 JOIN persons AS pe ON (gm.person_id = pe.person_id) \
                 JOIN exchange AS ex ON (pe.person_id = ex.owner_id) \
                 WHERE pe.username = $1  ORDER BY game_id ASC',[username], (error, results) => {
       if (error) {
-        throw error
+        results = {};//throw error
       }
+      
       console.log(results.rows);
-      return results.rows;
+      callback(results.rows);
     })
   }
 
-const getGames = () => {
-    pool.query('SELECT * FROM game ORDER BY game_id ASC', (error, results) => {
+module.exports.getGames = (callback) => {
+   pool.query('SELECT * FROM game ORDER BY game_id ASC', (error, results) => {
       if (error) {
-        throw error;
+        results = {};//throw error;
       }
       console.log(results.rows);
-      return results.rows;
+      callback(results.rows);
     })
   }
 
-const getPersonId = () => {
-  pool.query('SELECT person_id FROM persons WHERE username = $1', [username], (error, results) => {
+let getPersonId = (username, callback) => {
+   pool.query('SELECT person_id FROM persons WHERE username = $1', [username], (error, results) => {
     if(error) {
-      throw error;
+      results = {};//throw error;
     }
+    // callback(results.rows
     console.log(results.rows);
-    return results.rows
+    callback(results.row[0].person_id);
   })
 }
 
-const createGame = (request, response) => {
-    pool.query('INSERT INTO game (person_id, title) VALUES ($1, $2)', 
+module.exports.createGame = (username, title, callback) => {
+    let person_id;
+    getPersonId(username, (result) => {person_id = result;});
+    console.log("id is: " + person_id);
+    pool.query('INSERT INTO game (person_id, title) values ($1, $2)', 
       [person_id, title], (error, results) => {
       if (error) {
-        throw error
+        results = {};//throw error
       }
       //response.status(201).send(`User added with ID: ${result.insertId}`)
+      // callback(results.insertId;
       console.log(results.insertId);
-      return results.insertId;
+      callback(results.insertId);
     })
 }
 

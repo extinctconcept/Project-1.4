@@ -5,20 +5,13 @@
 		<meta charset="utf-8"/>
 		<link href="style.css" type="text/css" rel="stylesheet"/>
 		<script src="header.js"></script>
+		<script src="profilegames.js"></script>
 		<title>Project4 Profile</title>
 	</head>
 
 	<body onload="headerBuilder.initialize()">
 		<header></header>
 
-    <table>
-			<thead>
-      <tr>
-        <th>Owned Games:</th>
-        <th>Sample Game 1</th>
-				<th>Sample Game 2</th>
-      </tr>
-    </table>
 
 		<div class="add_game_container">
 			<input id="popup_toggle" type="checkbox">
@@ -34,6 +27,8 @@
     			<label class="popup_content_button" for="popup_toggle">OK</label>
   			</div>
 		</div>
+		
+		<div id="game-display"></div>
 	</body>
 	
 </html>

@@ -6,21 +6,13 @@ const db = require('../queries');
 // let userCheckFalse = login.Query_Login('test','st');
 var testUser;
 
-function callback(result)
-{
-    testUser = result;
-}
-
-db.getUser('Polymorph', callback);
+db.getUser('Polymorph', (result) => {testUser = result;});
 
 describe('queries.js', function () {
     describe('getUser()', function () {
         console.log(testUser);
         it('Should return true if anything is returned', function () {
             assert.isNotNull(testUser, "There was not error")
-        });
-        it('Should return true if object is undefined', function () {
-            assert.isUndefined(testUser, "The object exists")
         });
         it('Should return object if object exists', function () {
             assert.isObject(testUser, "There is an object")

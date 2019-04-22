@@ -19,14 +19,14 @@ module.exports.getUsers = () => {
     })
   }
 
-module.exports.getUser = (username) => {
+module.exports.getUser = (username, callback) => {
     //module.exports.query_data = URL.parse(request.url, true).query;
     console.log(pool.query('SELECT * FROM persons WHERE username = $1', [username], (error, results) => {
     if(error) {
         //throw(error)
     }
     console.log(results.rows[0]);
-    return results.rows[0];
+    callback(results.rows[0]);
     //response.status(200).json(results.rows)
   }));
 }

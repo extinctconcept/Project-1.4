@@ -4,7 +4,14 @@ const db = require('../queries');
 // results
 // let userCheckTrue = login.Query_Login('test','test');
 // let userCheckFalse = login.Query_Login('test','st');
-var testUser = db.getUser('Polymorph');
+var testUser;
+
+function callback(result)
+{
+    testUser = result;
+}
+
+db.getUser('Polymorph', callback);
 
 describe('queries.js', function () {
     describe('getUser()', function () {

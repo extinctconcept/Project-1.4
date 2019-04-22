@@ -67,7 +67,7 @@ module.exports.getGames = (callback) => {
     })
   }
 
-module.exports.getPersonId = (username, callback) => {
+let getPersonId = (username, callback) => {
    pool.query('SELECT person_id FROM persons WHERE username = $1', [username], (error, results) => {
     if(error) {
       results = {};//throw error;
@@ -80,7 +80,7 @@ module.exports.getPersonId = (username, callback) => {
 
 module.exports.createGame = (username, title, callback) => {
     let person_id;
-    module.exports.getPersonId(username, (result) => {person_id = result;});
+    getPersonId(username, (result) => {person_id = result;});
     console.log("id is: " + person_id);
     pool.query('INSERT INTO game (person_id, title) values ($1, $2)', 
       [person_id, title], (error, results) => {

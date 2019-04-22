@@ -6,7 +6,7 @@ const db = require('../queries');
 // let userCheckFalse = login.Query_Login('test','st');
 var testUser = db.getUser('Polymorph');
 console.log(testUser);
-console.log(db.getUser("Polymoprh"));
+console.log(db.getUser("Polymorph"));
 console.log(db);
 
 describe('queries.js', function () {
@@ -24,10 +24,6 @@ describe('queries.js', function () {
             assert.equal(testUser.username, 'Polymorph');
         });
         console.log(testUser)
-        it('Should take less than 500ms', function(done) {
-            this.timeout(500);
-            setTimeout(done, 300);
-          });
     });
 
 });

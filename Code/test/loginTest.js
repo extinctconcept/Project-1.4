@@ -14,10 +14,6 @@ describe('login.js', function () {
         it('Should return false if username and password dont match match', function () {
             assert.equal(userCheckFalse, false)
         });
-        it('Should take less than 500ms', function(done) {
-            this.timeout(500);
-            setTimeout(done, 300);
-          });
     });
 
 });

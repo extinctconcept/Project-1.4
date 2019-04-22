@@ -2,6 +2,7 @@ const EXPRESS = require('express');
 const URL = require('url');
 const FS = require('fs');
 const COOKIES = require('cookies');
+const DB = require("./queries")
 
 var logins = { 'test': 'test' };
 var sessions = ['test'];
@@ -9,6 +10,10 @@ var sessionID = 1;
 
 function Query_Login(username, password)
 {
+    let database_pass;
+    DB.getUser(username, (result) => {database_pass = result;});
+    return password == database_pass.password;
+
         return logins[username] == password;
         //return username == 'test' && password == 'test';
 }

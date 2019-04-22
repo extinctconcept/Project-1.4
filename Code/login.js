@@ -8,7 +8,7 @@ var logins = { 'test': 'test' };
 var sessions = ['test'];
 var sessionID = 1;
 
-function Login_Success()
+function Login_Success(res,req,next)
 {
     var cookies = new COOKIES(req, res);
     cookies.set('key', sessionID, { httpOnly: false });
@@ -18,22 +18,22 @@ function Login_Success()
     EXPRESS.static("html/static/profile.html")(req, res, next);
 }
 
-function Login_Failed()
+function Login_Failed(res,req,next)
 {
     EXPRESS.static("html/static/login.html")(req, res, next);
 }
 
-function Query_Login(username, password)
+function Query_Login(username, password,res,req,next)
 {
     let database_pass;
     DB.getUser(username, (result) => {
         if(password == result.password)
         {
-            Login_Success();
+            Login_Success(res, req, next);
         }
         else
         {
-            Login_Failed();
+            Login_Failed(res, req, next);
         }
         ;});
     
@@ -57,7 +57,7 @@ module.exports.login = function(req, res, next)
 {
     var query_data = URL.parse(req.url, true).query;
     console.log(query_data);
-    Query_Login(query_data.username, query_data.password);
+    Query_Login(query_data.username, query_data.password,res,req,next);
 }
 
 module.exports.register = function (req, res, next) {

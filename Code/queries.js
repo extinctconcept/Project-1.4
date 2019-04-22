@@ -55,7 +55,7 @@ module.exports.getGamesByUserExchange = (username, callback) => {
      }
      
     //  console.log(results.rows);
-     callback(results.rows);
+     callback(results.rows[0]);
    })
  }
 
@@ -76,7 +76,7 @@ module.exports.getGamesByUser = (username, callback) => {
       }
       
       // console.log(results.rows);
-      callback(results.rows);
+      callback(results.rows[0]);
     })
   }
 

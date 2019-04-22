@@ -9,7 +9,7 @@ const pool = new Pool({
 })
 
 module.exports.getUsers = () => {
-  await pool.query('SELECT * FROM persons ORDER BY person_id ASC', (error, results) => {
+   pool.query('SELECT * FROM persons ORDER BY person_id ASC', (error, results) => {
       if (error) {
         results = {};//throw error
       }
@@ -21,18 +21,18 @@ module.exports.getUsers = () => {
 
 module.exports.getUser = (username) => {
     //module.exports.query_data = URL.parse(request.url, true).query;
-    await pool.query('SELECT * FROM persons WHERE username = $1', [username], (error, results) => {
+    console.log(pool.query('SELECT * FROM persons WHERE username = $1', [username], (error, results) => {
     if(error) {
         //throw(error)
     }
     console.log(results.rows[0]);
     return results.rows[0];
     //response.status(200).json(results.rows)
-  });
+  }));
 }
 
 module.exports.createUser = (password, username, first_name, last_name, email) => {
-  await pool.query('INSERT INTO persons (password, username, first_name, last_name, email) values ($1, $2, $3, $4, $5)', 
+   pool.query('INSERT INTO persons (password, username, first_name, last_name, email) values ($1, $2, $3, $4, $5)', 
       [password, username, first_name, last_name, email], (error, results) => {
       if (error) {
         results = {};//throw error
@@ -45,7 +45,7 @@ module.exports.createUser = (password, username, first_name, last_name, email) =
 }
 
 module.exports.getGamesByUser = (username) => {
-  await pool.query('SELECT * FROM game AS gm\
+   pool.query('SELECT * FROM game AS gm\
                 JOIN persons AS pe ON (gm.person_id = pe.person_id) \
                 WHERE pe.username = $1  ORDER BY game_id ASC',[username], (error, results) => {
       if (error) {
@@ -58,7 +58,7 @@ module.exports.getGamesByUser = (username) => {
   }
 
 module.exports.getGames = () => {
-  await pool.query('SELECT * FROM game ORDER BY game_id ASC', (error, results) => {
+   pool.query('SELECT * FROM game ORDER BY game_id ASC', (error, results) => {
       if (error) {
         results = {};//throw error;
       }
@@ -68,7 +68,7 @@ module.exports.getGames = () => {
   }
 
 module.exports.getPersonId = (username) => {
-  await pool.query('SELECT person_id FROM persons WHERE username = $1', [username], (error, results) => {
+   pool.query('SELECT person_id FROM persons WHERE username = $1', [username], (error, results) => {
     if(error) {
       results = {};//throw error;
     }

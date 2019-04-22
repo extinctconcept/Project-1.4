@@ -25,8 +25,8 @@ const getUser = (username) => {
     if(error) {
         //throw(error)
     }
+    console.log(results.rows[0]);
     return results.rows[0];
-    // console.log(results.rows[0]);
     //response.status(200).json(results.rows)
   });
 }

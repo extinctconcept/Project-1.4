@@ -37,6 +37,7 @@ module.exports.get_profile_games = function(req, res, next)
     console.log("Games of: " + sessionID + " " + LOGIN.sessions[sessionID]);
     if(!sessionID || !LOGIN.sessions[sessionID])
     {
+        console.log("no login sending empty json");
         res.send("[]");
     }
     else

@@ -59,6 +59,7 @@ module.exports.add_profile_games = function(req,res,next)
     var cookies = new COOKIES(req,res);
     sessionID = cookies.get('key');
     console.log("Add game to: " + sessionID + " " + LOGIN.sessions[sessionID]);
+    console.log(query_data);
     //res.setHeader('Content-Type', 'application/json');
     if(!sessionID || !LOGIN.sessions[sessionID])
     {

@@ -66,8 +66,8 @@ module.exports.getGamesByUser = (username, callback) => {
         results = {};//throw error
       }
       
-      console.log(results.rows[0]);
-      callback(results.rows[0]);
+      console.log(results.rows);
+      callback(results.rows);
     })
   }
 

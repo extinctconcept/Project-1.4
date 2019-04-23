@@ -41,7 +41,7 @@ function Query_Login(username, password,res,req,next)
         //return username == 'test' && password == 'test';
 }
 
-function Query_Register(query_data)
+function Query_Register(res,req,next,query_data)
 {
     DB.getUser(query_data.username, function(result)
     {
@@ -73,7 +73,7 @@ module.exports.login = function(req, res, next)
 module.exports.register = function (req, res, next) {
     var query_data = URL.parse(req.url, true).query;
     console.log(query_data);
-    Query_Register(query_data);
+    Query_Register(res,req,next,query_data);
 
     /*if(Query_Register(query_data.username,query_data.password))
     {

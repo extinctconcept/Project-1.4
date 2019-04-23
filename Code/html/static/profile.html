@@ -12,18 +12,6 @@
 	<body onload="headerBuilder.initialize()">
 		<header></header>
 
-	<script>
-	const DB = require("./queries");
-
-	function addGame() {
-		var form = document.getElementById("add_game_form");
-		var gameName = form.elements[0].value;
-		console.log(gameName);
-		DB.addGame();
-		console.log("added game");
-	}
-	</script>
-
 	<div class="add_game_container">
 		<input id="popup_toggle" type="checkbox">
 		<label class="popup_button" for="popup_toggle">Add Game</label>
@@ -31,9 +19,9 @@
 		<div class="add_game">
 			<label class="popup_close" for="popup_toggle">&#x2715;</label>
 			<h1>Add Game</h1>
-			<form id="add_game_form" action=#>
+			<form id="add_game_form" action=/addprofilegames method="post">
 				<label>Game Title: </label>
-				<input type="text" id="game_name" name="game_name" required>
+				<input type="text" id="title" name="title" required>
 				<button class="popup_content_button" for="popup_toggle" type="submit" onclick="addGame()">OK</button>
 			</form>
 		</div>

@@ -8,7 +8,7 @@
 		<title>Project4 Profile</title>
 	</head>
 
-	<body onload="headerBuilder.initialize()">
+	<body onload="headerBuilder.initialize(), showGames()">
 		<header></header>
 
 	<div class="add_game_container">
@@ -21,7 +21,7 @@
 			<form action="addGame()" method="post">
 				<label>Game Title: </label>
 				<input type="text" id="game_name" name="game_name" required>
-				<label class="popup_content_button" for="popup_toggle" onclick="submit">OK</label>
+				<label class="popup_content_button" for="popup_toggle" onclick="addGame()">OK</label>
 			</form>
 		</div>
 	</div>
@@ -32,11 +32,11 @@
 
 	<script>
 	function addGame() {
-		document.getElementById("game_name");
+		console.log("added game");
 	}
 
 	function showGames() {
-		
+		console.log("showing games");
 	}
 	</script>
 

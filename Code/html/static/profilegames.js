@@ -10,7 +10,7 @@ function Display_Games(arr)
         if(element.art_url === null)
             display.innerHTML += "<div class=\"list_item, list_text\">" + "<p>" + element.title + "</p>" + "<div>";
         else
-            display.innerHTML += "<div class=\"list_item\">" + "<img class= \"list_image\" src='" + element.art_url + "'>" + "<div class=\"list_text\">" + "<p>" + element.title + "</p><div><div>";
+            display.innerHTML += "<div class=\"list_item\">" + "<img class= \"list_image\" src='" + element.art_url + "'>" + "<div class=\"list_text\">" + "<p>" + element.title + "<p>" + "<div>" + "<div>";
     });
 }
 

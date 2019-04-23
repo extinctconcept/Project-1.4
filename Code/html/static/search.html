@@ -14,13 +14,13 @@
 		<div class="wrap">
    		<div class="search">
       		<input type="text" class="searchTerm" placeholder="What are you looking for?">
-      		<button type="submit" class="searchButton">
+      		<button type="submit" class="searchButton" onclick="Display_Games()">
         		<i class="fa fa-search">Search</i>
      		</button>
 		</div>
 		</div>
 
-		<div class="result">
+		<div id="search_results">
 			<!-- <div id="thumbnail"></div>
 			<div>
 				<h3>Sample Game 1</h3>
@@ -31,9 +31,33 @@
 		</div>
 
 		<script>
-		function request() {
-			console.log("request sent");
+		var data = null;
+		var xhr = new XMLHttpRequest();
+		const DB = require("./queries");
+
+		function Display_Games()
+		{
+		    let display = document.getElementById("game-display");
+			let arr = DB.getGames;
+		    arr.forEach(element => {
+		        if(element.cover === undefined)
+		            display.innerHTML += "<div class=\"list_item, list_text\">" + element.name + "<div>";
+		        else
+		            display.innerHTML += "<div class=\"list_item\">" + "<img class= \"list_image\" src='" + element.cover.url + "'>" + "<div class=\"list_text\">" + element.name + "<div>" + "<div>";
+		    });
 		}
+
+		xhr.addEventListener("readystatechange", function () {
+		  if (this.readyState === this.DONE) {
+		    let x = JSON.parse(this.responseText);
+		    console.log(x);
+		    Display_Games(x);
+		  }
+		});
+
+		xhr.open("GET", "getprofilegames/");
+
+		xhr.send(data);
 		</script>
 
 	</body>

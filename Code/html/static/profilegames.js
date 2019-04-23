@@ -6,7 +6,6 @@ var xhr = new XMLHttpRequest();
 function Display_Games(arr)
 {
     let display = document.getElementById("game-display");
-    display.innerHTML = "<p>Owned Games:</p>";
     arr.forEach(element => {
         if(element.cover === undefined)
             display.innerHTML += "<div class=\"list_item, list_text\">" + element.name + "<div>";

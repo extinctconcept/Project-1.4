@@ -66,7 +66,7 @@ module.exports.getGamesByUser = (username, callback) => {
         results = {};
       }
       
-      console.log(results.rows[0]);
+      //console.log(results.rows[0]);
       //returing all rows breaks the test that is looking for a single game
       callback(results.rows);
     })
@@ -88,7 +88,7 @@ module.exports.searchGames = (title, callback) => {
        if (error) {
          results = {};//throw error;
        }
-       // console.log(results.rows);
+       console.log(results.rows);
        callback(results.rows);
      })
    }

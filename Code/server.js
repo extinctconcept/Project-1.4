@@ -7,10 +7,9 @@ const LOGIN = require("./login.js");
 const COOKIES = require("./cookie.js");
 const PROFILE = require("./profile.js");
 const CORS = require('cors');
-const REQUEST = require("request");
+const db = require('./queries')
 
 const hostname = '127.0.0.1';
-const db = require('./html/static/queries')
 const port = 3000;
 const app = EXPRESS();
 
@@ -51,14 +50,18 @@ app.use('/login', LOGIN.login);
 app.use('/register', LOGIN.register);
 app.use('/logout|/logout.html', LOGIN.logout);
 app.use('/profile.html', PROFILE.profile);
-app.use('/profile/:username', PROFILE.view_profile);
+app.use('/getprofilegames', PROFILE.get_profile_games);
+app.use('/addprofilegames', PROFILE.add_profile_games);
 app.use(EXPRESS.static("html/static"));
 app.use('/games', Query_Games_Api);
 app.get('/getusers', db.getUsers);
 app.get('/getuser/', db.getUser);
 app.get('/getgames', db.getGames);
 app.get('/getgamesbyuser/', db.getGamesByUser);
+app.get('/getgameswithexchange', db.getGamesByUserExchange);
 app.post('/createUser', db.createUser);
+app.post('/createExchange', db.createExchange);
+app.post('/deleteexchange', db.deleteExchange);
 app.use(function (req, res, next) {
   res.redirect("/index.html");
 })

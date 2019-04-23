@@ -1,4 +1,3 @@
-const URL = require('url');
 const Pool = require('pg').Pool
 const pool = new Pool({
   user: 'pi',
@@ -9,6 +8,7 @@ const pool = new Pool({
 })
 
 const getUsers = (request, response) => {
+    console.log(request);
     pool.query('SELECT * FROM persons ORDER BY person_id ASC', (error, results) => {
       if (error) {
         throw error
@@ -18,32 +18,16 @@ const getUsers = (request, response) => {
   }
 
 const getUser = (request, response) => {
-    const query_data = URL.parse(request.url, true).query;
-    console.log(query_data.username);
-    pool.query('SELECT * FROM persons WHERE username = $1', [query_data.username], (error, results) => {
+    const username = request.params.username
+    pool.query('SELECT * FROM persons WHERE username = $1', [username])
     if(error) {
         throw(error)
     }
     response.status(200).json(results.rows)
-  });
 }
 
-const createUser = (request, response) => {
-  const query_data = URL.parse(request.url, true).query;
-    pool.query('INSERT INTO persons (password, username, first_name, last_name, email) values ($1, $2, $3, $4, $5)', 
-      [query_data.password, query_data.username, query_data.first_name, query_data.last_name, query_data.email], (error, results) => {
-      if (error) {
-        throw error
-      }
-      response.status(201).send(`User added with ID: ${result.insertId}`)
-    })
-}
-
-const getGamesByUser = (request, response) => {
-    const query_data = URL.parse(request.url, true).query;
-    pool.query('SELECT * FROM game AS gm\
-                JOIN persons AS pe ON (gm.person_id = pe.person_id) \
-                WHERE pe.username = $1  ORDER BY game_id ASC',[query_data.username], (error, results) => {
+const getGames = (request, response) => {
+    pool.query('SELECT * FROM games ORDER BY id ASC', (error, results) => {
       if (error) {
         throw error
       }
@@ -51,37 +35,43 @@ const getGamesByUser = (request, response) => {
     })
   }
 
-const getGames = (request, response) => {
+const getGameByName = (request, response) => {
     pool.query('SELECT * FROM game ORDER BY id ASC', (error, results) => {
       if (error) {
         throw error
       }
+      // iterate here to parse out game by name
       response.status(200).json(results.rows)
     })
   }
 
-const createGame = (request, response) => {
-  // const {
-  //   password,
-  //   username,
-  //   first_name,
-  //   last_name,
-  //   email
-  //   } = request.body
+const createUser = (request, response) => {
+    // const { username, first_name, last_name, email } = request.body
+  
+    // pool.query('INSERT INTO persons (username, first_name, last_name, email) VALUES ($1, $2, $3, $4, $5)', [username, first_name, last_name, email], (error, results) => {
+    //   if (error) {
+    //     throw error
+    //   }
+    //   response.status(201).send(`User added with ID: ${result.insertId}`)
+    // })
+  }
 
-  //   pool.query('INSERT INTO persons (password, username, first_name, last_name, email) values ($1, $2, $3, $4, $5)', 
-  //     [password, username, first_name, last_name, email], (error, results) => {
-  //     if (error) {
-  //       throw error
-  //     }
-  //     response.status(201).send(`User added with ID: ${result.insertId}`)
-  //   })  
-}
+const createGame = (request, response) => {
+    // const { username } = reqeust.body.username
+    // user_id = getUser();
+    // username = user_id.username
+    // const { user_id, title } = request.body
+  
+    // pool.query('INSERT INTO persons (username, first_name, last_name, email) VALUES ($1, $2, $3, $4, $5)', [username, first_name, last_name, email], (error, results) => {
+    //   if (error) {
+    //     throw error
+    //   }
+    //   response.status(201).send(`Game added with ID: ${result.insertId}`)
+    // })
+  }
 
 module.exports = {
-  createUser,
   getUsers,
   getUser,
   getGames,
-  getGamesByUser,
 }

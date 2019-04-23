@@ -41,11 +41,21 @@ function Query_Login(username, password,res,req,next)
         //return username == 'test' && password == 'test';
 }
 
-function Query_Register(username,password)
+function Query_Register(query_data)
 {
     DB.getUser(username, function(result)
     {
-
+        if(result == undefined)
+        {
+            DB.createUser(query_data.password,query_data.username,query_data.first_name,query_data.last_name, query_data.email,
+                (result) =>{
+                    var cookies = new COOKIES(req, res);
+                    cookies.set('key', sessionID, { httpOnly: false });
+                    sessions[sessionID] = query_data.username;
+                    sessionID += 1;
+                    EXPRESS.static("html/static/profile.html")(req,res,next);
+                });
+        }
     });
     return true; // username is not already in the database.
 }
@@ -63,19 +73,15 @@ module.exports.login = function(req, res, next)
 module.exports.register = function (req, res, next) {
     var query_data = URL.parse(req.url, true).query;
     console.log(query_data);
+    Query_Register(query_data);
 
-    if(Query_Register(query_data.username,query_data.password))
+    /*if(Query_Register(query_data.username,query_data.password))
     {
-        var cookies = new COOKIES(req, res);
-        cookies.set('key', sessionID, { httpOnly: false });
-        sessions[sessionID] = query_data.username;
-        sessionID += 1;
-        EXPRESS.static("html/static/profile.html")(req,res,next);
     }
     else
     {
         EXPRESS.static("html/static/login.html")(req,res,next);
-    }
+    }*/
 
         // really we want to shove information into this instead of doing a static serve
         // this is fine for now.  Either that or the page could request a json object later.

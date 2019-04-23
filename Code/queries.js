@@ -66,8 +66,8 @@ module.exports.getGamesByUser = (username, callback) => {
         results = {};
       }
       
-      console.log(results.rows);
-      callback(results.rows);
+      console.log(results.rows[0]);
+      callback(results.rows[0]);
     })
   }
 
@@ -129,7 +129,7 @@ module.exports.deleteExchange = (exchange_id, callback) => {
       throw error;
     }
     // console.log(results);
-    callback(results.rows[0])
+    callback(results.row)
   })
 }
 

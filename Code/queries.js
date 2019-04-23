@@ -75,9 +75,10 @@ module.exports.getGamesByUser = (username, response) => {
       if (error) {
         results = {};
       }
-      response.status(200).json(results.rows)
+
       // console.log(results.rows);
       // callback(results.rows);
+      return results.rows;
     })
   }
 

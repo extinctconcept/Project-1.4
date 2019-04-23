@@ -116,9 +116,7 @@ describe('queries.js', function () {
         it('Should return true if availability is defined', function () {
             assert.isDefined(testSearch[0].availability_id, 'availability is defined');
         });
-        it('Should return true if username is defined', function () {
-            assert.isDefined(testSearch[0].username, 'username is defined');
-        });
+
 
     });
 

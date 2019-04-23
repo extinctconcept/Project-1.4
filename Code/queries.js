@@ -84,7 +84,7 @@ module.exports.getGames = (callback) => {
 
 // returns the results of all games matching on search
 module.exports.searchGames = (title, callback) => {
-    pool.query('SELECT * FROM game WHERE LOWER(title) like LOWER($1%) ORDER BY game_id ASC', ['%title%'],(error, results) => {
+    pool.query('SELECT * FROM game WHERE LOWER(title) like LOWER($1%) ORDER BY game_id ASC', ['%DO%'],(error, results) => {
        if (error) {
          results = {};//throw error;
        }

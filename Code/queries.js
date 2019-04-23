@@ -125,6 +125,7 @@ module.exports.createGame = (username, title, callback) => {
       pool.query('INSERT INTO game (person_id, title) values ($1, $2)', 
         [person_id, title], (error, results) => {
         if (error) {
+          throw error;
           results = {};//throw error
         }
         else

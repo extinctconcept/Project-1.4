@@ -82,6 +82,17 @@ module.exports.getGames = (callback) => {
     })
   }
 
+// returns the results of all games matching on search
+module.exports.searchGames = (title, callback) => {
+    pool.query('SELECT * FROM game WHERE LOWER(title) like LOWER(%$1%) ORDER BY game_id ASC', [title],(error, results) => {
+       if (error) {
+         results = {};//throw error;
+       }
+       // console.log(results.rows);
+       callback(results.rows);
+     })
+   }
+
 let getPersonId = (username, callback) => {
    pool.query('SELECT person_id FROM persons WHERE username = $1', [username], (error, results) => {
     if(error) {

@@ -76,9 +76,9 @@ module.exports.getGamesByUser = (username, callback) => {
         results = {};
       }
 
-      console.log(results.rows);
-      // callback(results.rows);
-      return results.rows;
+      // console.log(results.rows);
+      callback(results.rows);
+      // return results.rows;
     })
   }
 

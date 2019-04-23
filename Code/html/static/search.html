@@ -30,35 +30,5 @@
 			</div> -->
 		</div>
 
-		<script>
-		var data = null;
-		var xhr = new XMLHttpRequest();
-		const DB = require("./queries");
-
-		function Display_Games()
-		{
-		    let display = document.getElementById("game-display");
-			let arr = DB.getGames();
-		    arr.forEach(element => {
-		        if(element.cover === undefined)
-		            display.innerHTML += "<div class=\"list_item, list_text\">" + element.name + "<div>" + "<button>Borrow</button>";
-		        else
-		            display.innerHTML += "<div class=\"list_item\">" + "<img class= \"list_image\" src='" + element.cover.url + "'>" + "<div class=\"list_text\">" + element.name + "<div>" + "<div>" + "<button>Borrow</button>";
-		    });
-		}
-
-		xhr.addEventListener("readystatechange", function () {
-		  if (this.readyState === this.DONE) {
-		    let x = JSON.parse(this.responseText);
-		    console.log(x);
-		    Display_Games(x);
-		  }
-		});
-
-		xhr.open("GET", "getprofilegames/");
-
-		xhr.send(data);
-		</script>
-
 	</body>
 </html>

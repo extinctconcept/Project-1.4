@@ -267,14 +267,17 @@ table, th, td {
 	 visibility: visible;
 	 box-shadow: 0 3px 7px rgba(0, 0, 0, 0.6);
 }
+
 .list_item {
   margin: 20px;
 }
+
 .list_image {
   display: inline-block;
   padding-right: 20px;
   vertical-align: middle;
 }
+
 .list_text {
   font-size: 20;
   font-weight: bold;
@@ -282,8 +285,15 @@ table, th, td {
   text-align: center;
   vertical-align: middle;
 }
-@@media (max-width: 400px) {
+
+@media (max-width: 400px) {
   #popup_toggle.active ~ .add_game, #popup_toggle:checked ~ .add_game {
 		 left: 0;
 	}
+}
+
+div p {
+    font-style: lighter;
+    display: inline-block;
+    text-align: center;
 }

@@ -61,9 +61,19 @@ module.exports.getGamesByUserExchange = (username, callback) => {
 
 // this will pull all games the user has posted
 module.exports.getGamesByUser = (username, callback) => {
-   pool.query('SELECT gm.game_id, gm.title, gm.player_count, gm.art_url, gm.rating, gm.availability_id,pe.username, FROM game AS gm LEFT JOIN persons AS pe ON (gm.person_id = pe.person_id) WHERE pe.username = $1  ORDER BY game_id ASC',[username], (error, results) => {
+   pool.query('SELECT gm.game_id, \
+                      gm.title, \
+                      gm.player_count, \
+                      gm.art_url, \
+                      gm.rating, \
+                      gm.availability_id, \
+                      pe.username, \
+                FROM game AS gm \
+                LEFT JOIN persons AS pe ON (gm.person_id = pe.person_id) \
+                WHERE pe.username = $1  \
+                ORDER BY game_id ASC',[username], (error, results) => {
       if (error) {
-        // results = {};//throw error
+        results = {};
       }
       
       console.log(results.rows);
@@ -110,7 +120,7 @@ module.exports.createGame = (username, title, callback) => {
 
 // this should be called when someone wants to borrow a game
 // you need to pass in the user's id who is making the request as well as the owners id 
-module.exports.createExchange = (reqeust, response) => {
+module.exports.createExchange = (owner_id, borrower_id, game_id, callback) => {
   pool.query('INSERT INTO exchange (owner_id, borrower_id, game_id, exchange_date, return_date) \
               VALUES ($1, $2, $3, current_date, current_date + 14)',
     [owner_id, borrower_id, game_id],(error,results) => {
@@ -123,7 +133,7 @@ module.exports.createExchange = (reqeust, response) => {
 }
 
 // only the owner should be able to do this
-module.exports.deleteExchange = (reqeust, response) => {
+module.exports.deleteExchange = (exchange_id, callback) => {
   pool.query('DELETE FROM exchange WHERE exchange_id = $1', [exchange_id], (error,results) => {
     if(error) {
       throw error;
@@ -133,7 +143,7 @@ module.exports.deleteExchange = (reqeust, response) => {
   })
 }
 
-module.exports.modifyGameExchangeType = (request, response) => {
+module.exports.modifyGameExchangeType = (availability_id, game_id, callback) => {
   pool.query('UPDATE game AS gm \
               SET availability_id = $1 \
               WHERE game_id = $2',[availability_id, game_id],(error,results) =>{

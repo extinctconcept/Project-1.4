@@ -109,8 +109,8 @@ let getPersonId = (username, callback) => {
     }
     else
     {
-      if(results.row[0] == undefined) callback(undefined);
-      else callback(results.row[0].person_id);
+      if(results.rows[0] == undefined) callback(undefined);
+      else callback(results.rows[0].person_id);
     }
     // callback(results.rows
     // console.log(results.rows);

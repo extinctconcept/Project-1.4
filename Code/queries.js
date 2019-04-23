@@ -81,6 +81,19 @@ module.exports.getGamesByUser = (username, callback) => {
     })
   }
 
+  module.exports.getGamebyID = (game_id, callback) => {
+    pool.query('SELECT * FROM game WHERE game_id = $1 ORDER BY game_id ASC',[game_id], (error, results) => {
+       if (error) {
+         throw error;
+         results = {};
+       }
+       
+       console.log(results.rows);
+       //returing all rows breaks the test that is looking for a single game
+       callback(results.rows);
+     })
+   }
+
 module.exports.getGames = (callback) => {
    pool.query('SELECT * FROM game ORDER BY game_id ASC', (error, results) => {
       if (error) {

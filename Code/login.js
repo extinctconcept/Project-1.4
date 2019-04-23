@@ -50,7 +50,7 @@ function Query_Register(res,req,next,query_data)
         console.log(query_data);
         if(result == undefined)
         {
-            DB.createUser(query_data.password,query_data.username,query_data.first_name,query_data.last_name, query_data.email,
+            DB.createUser(query_data.password,query_data.username,query_data.fname,query_data.lname, query_data.email,
                 (result) =>{
                     console.log("register Success.");
                     console.log(query_data);

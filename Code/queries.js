@@ -127,10 +127,13 @@ module.exports.createGame = (username, title, callback) => {
         if (error) {
           results = {};//throw error
         }
+        else
+        {
+          callback(results.insertId);
+        }
         //response.status(201).send(`User added with ID: ${result.insertId}`)
         // callback(results.insertId;
         // console.log(results.insertId);
-        callback(results.insertId);
       })
     });
 }

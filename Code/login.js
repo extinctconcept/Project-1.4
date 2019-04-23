@@ -27,7 +27,7 @@ function Query_Login(username, password,res,req,next)
 {
     let database_pass;
     DB.getUser(username, (result) => {
-        if(password == result.password)
+        if(result != undefined && password == result.password)
         {
             Login_Success(username, res, req, next);
         }
@@ -43,10 +43,10 @@ function Query_Login(username, password,res,req,next)
 
 function Query_Register(username,password)
 {
-    if(logins[username] !== undefined)
-        return false;
+    DB.getUser(username, function(result)
+    {
 
-    logins[username] = password;
+    });
     return true; // username is not already in the database.
 }
 

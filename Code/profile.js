@@ -34,6 +34,7 @@ module.exports.get_profile_games = function(req, res, next)
     var cookies = new COOKIES(req,res);
     sessionID = cookies.get('key');
     res.setHeader('Content-Type', 'application/json');
+    console.log("Games of: " + sessionID + " " + LOGIN.sessions[sessionID]);
     if(!sessionID || !LOGIN.sessions[sessionID])
     {
         res.send("[]");
@@ -47,7 +48,6 @@ module.exports.get_profile_games = function(req, res, next)
         console.log(games);
         res.send(JSON.stringify(games));
     }
-    console.log("Games of: " + sessionID + " " + LOGIN.sessions[sessionID]);
 }
 
 module.exports.add_profile_games = function(req,res,next)

@@ -60,7 +60,7 @@ module.exports.getGamesByUserExchange = (username, callback) => {
  }
 
 // this will pull all games the user has posted
-module.exports.getGamesByUser = (username, callback) => {
+module.exports.getGamesByUser = (username, response) => {
    pool.query('SELECT gm.game_id, \
                       gm.title, \
                       gm.player_count, \
@@ -75,9 +75,9 @@ module.exports.getGamesByUser = (username, callback) => {
       if (error) {
         results = {};
       }
-      
-      console.log(results.rows);
-      callback(results.rows);
+      response.status(200).json(results.rows)
+      // console.log(results.rows);
+      // callback(results.rows);
     })
   }
 

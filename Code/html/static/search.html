@@ -30,5 +30,43 @@
 			</div> -->
 		</div>
 
+		<script>
+		var data = null;
+		var xhr = new XMLHttpRequest();
+
+		function Display_Games(arr)
+		{
+				let display = document.getElementById("search_results");
+				arr.forEach(element => {
+						if(element.art_url === null)
+						{
+								display.innerHTML += "<div class='list_item list_text'>" 
+									+ "<p>" + element.title + "</p>"
+									+ "<a href='requestgame?game_id=" + element.game_id + "'>REQUEST!</a>"
+									+ "<div>";
+						}
+						else
+						{
+								display.innerHTML += "<div class='list_item list_text'>"
+									+ "<p>" + element.title + "</p>"
+									+ "<a href='requestgame?game_id=" + element.game_id + "'>REQUEST!</a>"
+									+ "<div>";
+						}
+				});
+		}
+
+		xhr.addEventListener("readystatechange", function () {
+		  if (this.readyState === this.DONE) {
+		    let x = JSON.parse(this.responseText);
+		    console.log(x);
+		    Display_Games(x);
+		  }
+		});
+
+		xhr.open("GET", "allgames/");
+
+		xhr.send(data);
+		</script>
+
 	</body>
 </html>

@@ -69,8 +69,9 @@ module.exports.getGamesByUserExchange = (username, callback) => {
 
 // this will pull all games the user has posted
 module.exports.getGamesByUser = (username, callback) => {
-   pool.query('SELECT gm.person_id, gm.game_id, gm.title, gm.player_count, gm.art_url, gm.rating, gm.availability_id, pe.username FROM game AS gm LEFT JOIN persons AS pe ON (gm.person_id = pe.person_id) WHERE pe.username = $1 ORDER BY game_id ASC',[username], (error, results) => {
+   pool.query('SELECT * FROM game LEFT JOIN persons ON (game.person_id = persons.person_id) WHERE persons.username = $1 ORDER BY game_id ASC',[username], (error, results) => {
       if (error) {
+        throw error;
         results = {};
       }
       

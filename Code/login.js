@@ -44,12 +44,16 @@ function Query_Login(username, password,res,req,next)
 
 function Query_Register(res,req,next,query_data)
 {
-    DB.getUser(query_data.username, function(result)
-    {
+    DB.getUser(query_data.username, 
+        function(result){
+        console.log("register attempt.");
+        console.log(query_data);
         if(result == undefined)
         {
             DB.createUser(query_data.password,query_data.username,query_data.first_name,query_data.last_name, query_data.email,
                 (result) =>{
+                    console.log("register Success.");
+                    console.log(query_data);
                     var cookies = new COOKIES(req, res);
                     cookies.set('key', sessionID, { httpOnly: false });
                     sessions[sessionID] = query_data.username;

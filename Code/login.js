@@ -27,6 +27,7 @@ function Query_Login(username, password,res,req,next)
 {
     let database_pass;
     DB.getUser(username, (result) => {
+        console.log(result + "==" + password);
         if(result != undefined && password == result.password)
         {
             Login_Success(username, res, req, next);

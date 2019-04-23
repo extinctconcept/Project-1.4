@@ -38,12 +38,12 @@
 		function Display_Games()
 		{
 		    let display = document.getElementById("game-display");
-			let arr = DB.getGames;
+			let arr = DB.getGames();
 		    arr.forEach(element => {
 		        if(element.cover === undefined)
-		            display.innerHTML += "<div class=\"list_item, list_text\">" + element.name + "<div>";
+		            display.innerHTML += "<div class=\"list_item, list_text\">" + element.name + "<div>" + "<button>Borrow</button>";
 		        else
-		            display.innerHTML += "<div class=\"list_item\">" + "<img class= \"list_image\" src='" + element.cover.url + "'>" + "<div class=\"list_text\">" + element.name + "<div>" + "<div>";
+		            display.innerHTML += "<div class=\"list_item\">" + "<img class= \"list_image\" src='" + element.cover.url + "'>" + "<div class=\"list_text\">" + element.name + "<div>" + "<div>" + "<button>Borrow</button>";
 		    });
 		}
 

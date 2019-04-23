@@ -62,12 +62,15 @@ module.exports.add_profile_games = function(req,res,next)
     //res.setHeader('Content-Type', 'application/json');
     if(!sessionID || !LOGIN.sessions[sessionID])
     {
+        EXPRESS.static("html/static/profile.html")(req,res,next);
         //res.send("0");
     }
     else
     {
         let game_id;
-        db.createGame(LOGIN.sessions[sessionID], title, (result) => {game_id = result;});
+        db.createGame(LOGIN.sessions[sessionID], title, (result) => {game_id = result;
+            EXPRESS.static("html/static/profile.html")(req,res,next);
+        });
         //res.send(JSON.stringify(game_id));
     }
 }

@@ -47,6 +47,7 @@ module.exports.get_profile_games = function(req, res, next)
         if(!games)
         games = [];
         console.log(games);
+        res.status(200);
         res.send(JSON.stringify(games));
     }
 }

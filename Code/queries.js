@@ -129,7 +129,7 @@ module.exports.deleteExchange = (exchange_id, callback) => {
       throw error;
     }
     // console.log(results);
-    callback(results)
+    callback(results.rows[0])
   })
 }
 

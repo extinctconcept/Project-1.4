@@ -7,10 +7,10 @@ function Display_Games(arr)
 {
     let display = document.getElementById("game-display");
     arr.forEach(element => {
-        if(element.cover === undefined)
-            display.innerHTML += "<div class=\"list_item, list_text\">" + element.name + "<div>";
+        if(element.art_url === null)
+            display.innerHTML += "<div class=\"list_item, list_text\">" + element.title + "<div>";
         else
-            display.innerHTML += "<div class=\"list_item\">" + "<img class= \"list_image\" src='" + element.cover.url + "'>" + "<div class=\"list_text\">" + element.name + "<div>" + "<div>";
+            display.innerHTML += "<div class=\"list_item\">" + "<img class= \"list_image\" src='" + element.art_url + "'>" + "<div class=\"list_text\">" + element.title + "<div>" + "<div>";
     });
 }
 

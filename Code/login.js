@@ -43,7 +43,7 @@ function Query_Login(username, password,res,req,next)
 
 function Query_Register(query_data)
 {
-    DB.getUser(username, function(result)
+    DB.getUser(query_data.username, function(result)
     {
         if(result == undefined)
         {

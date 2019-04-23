@@ -23,10 +23,14 @@ module.exports.getUser = (username, callback) => {
     //module.exports.query_data = URL.parse(request.url, true).query;
     pool.query('SELECT * FROM persons WHERE username = $1', [username], (error, results) => {
     if(error) {
+      callback(undefined);
         //throw(error)
     }
+    else
+    {
+      callback(results.rows[0]);
+    }
     // console.log(results.rows[0]);
-    callback(results.rows[0]);
     //response.status(200).json(results.rows)
   });
 }
@@ -52,10 +56,14 @@ module.exports.getGamesByUserExchange = (username, callback) => {
                WHERE pe.username = $1  ORDER BY game_id ASC',[username], (error, results) => {
      if (error) {
        results = {};//throw error
+       callback(undefined);
      }
+     else
+    {
+      callback(results.rows[0]);
+    }
      
     //  console.log(results.rows);
-     callback(results.rows[0]);
    })
  }
 
@@ -97,10 +105,14 @@ let getPersonId = (username, callback) => {
    pool.query('SELECT person_id FROM persons WHERE username = $1', [username], (error, results) => {
     if(error) {
       results = {};//throw error;
+      callback(undefined);
+    }
+    else
+    {
+      callback(results.row[0].person_id);
     }
     // callback(results.rows
     // console.log(results.rows);
-    callback(results.row[0].person_id);
   })
 }
 

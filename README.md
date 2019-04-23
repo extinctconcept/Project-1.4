@@ -48,6 +48,7 @@ dataBase located on external Pi
 To gain access to Pi
 ssh pi@73.63.34.120 -p 2022 -L1234:localhost:3000 (This will forward port 3000 when you start up the server)
 Password: Project4321
+NOTE(The IP is subject to change, after project the database will not be available)
 
 "cd /pgAdmin/Code" (DataBase will be located here)
 "npm start"

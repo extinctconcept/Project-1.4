@@ -5,26 +5,36 @@
 		<meta charset="utf-8"/>
 		<link href="style.css" type="text/css" rel="stylesheet"/>
 		<script src="header.js"></script>
-		<title>Project4 Login</title>
+		<title>Project4</title>
 	</head>
 
 	<body onload="headerBuilder.initialize()">
 		<header></header>
 
-		<form >
-    <label for="search_bar">Search:</label>
-    <input type="text" name="search_bar">
-		</form>
+		<div class="wrap">
+   		<div class="search">
+      		<input type="text" class="searchTerm" placeholder="What are you looking for?">
+      		<button type="submit" class="searchButton">
+        		<i class="fa fa-search">Search</i>
+     		</button>
+		</div>
+		</div>
 
 		<div class="result">
-			<div id="rectangle"></div>
+			<!-- <div id="thumbnail"></div>
 			<div>
 				<h3>Sample Game 1</h3>
 				<p>1 Player</p>
 				<p>5/5 stars</p>
-				<button>Request</button>
-			</div>
+				<button onclick="request()">Request</button>
+			</div> -->
 		</div>
+
+		<script>
+		function request() {
+			console.log("request sent");
+		}
+		</script>
 
 	</body>
 </html>

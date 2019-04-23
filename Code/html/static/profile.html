@@ -8,32 +8,38 @@
 		<title>Project4 Profile</title>
 	</head>
 
-	<body onload="headerBuilder.initialize()">
+	<body onload="headerBuilder.initialize(), showGames()">
 		<header></header>
 
-    <table>
-			<thead>
-      <tr>
-        <th>Owned Games:</th>
-        <th>Sample Game 1</th>
-				<th>Sample Game 2</th>
-      </tr>
-    </table>
-
-		<div class="add_game_container">
-			<input id="popup_toggle" type="checkbox">
-			<label class="popup_button" for="popup_toggle">Add Game</label>
-			<label class="popup_backdrop" for="popup_toggle"></label>
-			<div class="add_game">
-    		<label class="popup_close" for="popup_toggle">&#x2715;</label>
-    			<h1>Add Game</h1>
-				<form method="get">
-					<label>Game Title: </label>
-					<input type="text" required>
-				</form>
-    			<label class="popup_content_button" for="popup_toggle">OK</label>
-  			</div>
+	<div class="add_game_container">
+		<input id="popup_toggle" type="checkbox">
+		<label class="popup_button" for="popup_toggle">Add Game</label>
+		<label class="popup_backdrop" for="popup_toggle"></label>
+		<div class="add_game">
+			<label class="popup_close" for="popup_toggle">&#x2715;</label>
+			<h1>Add Game</h1>
+			<form action="addGame()" method="post">
+				<label>Game Title: </label>
+				<input type="text" id="game_name" name="game_name" required>
+				<label class="popup_content_button" for="popup_toggle" onclick="addGame()">OK</label>
+			</form>
 		</div>
+	</div>
+
+	<div id="pending">Pending Requests:</div>
+	<div id="requested">Requested Games:</div>
+	<div id="owned">Owned Games:</div>
+
+	<script>
+	function addGame() {
+		console.log("added game");
+	}
+
+	function showGames() {
+		console.log("showing games");
+	}
+	</script>
+
 	</body>
-	
+
 </html>

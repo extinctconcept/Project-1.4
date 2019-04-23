@@ -119,18 +119,20 @@ let getPersonId = (username, callback) => {
 
 module.exports.createGame = (username, title, callback) => {
     let person_id;
-    getPersonId(username, (result) => {person_id = result;});
-    console.log("id is: " + person_id);
-    pool.query('INSERT INTO game (person_id, title) values ($1, $2)', 
-      [person_id, title], (error, results) => {
-      if (error) {
-        results = {};//throw error
-      }
-      //response.status(201).send(`User added with ID: ${result.insertId}`)
-      // callback(results.insertId;
-      // console.log(results.insertId);
-      callback(results.insertId);
-    })
+    getPersonId(username, (result) => {
+      person_id = result;
+      console.log("id is: " + person_id);
+      pool.query('INSERT INTO game (person_id, title) values ($1, $2)', 
+        [person_id, title], (error, results) => {
+        if (error) {
+          results = {};//throw error
+        }
+        //response.status(201).send(`User added with ID: ${result.insertId}`)
+        // callback(results.insertId;
+        // console.log(results.insertId);
+        callback(results.insertId);
+      })
+    });
 }
 
 // this should be called when someone wants to borrow a game

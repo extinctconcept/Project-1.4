@@ -278,7 +278,7 @@ table, th, td {
 	}
 }
 
-.game-display {
+.game-display div {
   display: flex;
   margin-left: 60px;
   padding: 10px;
@@ -286,7 +286,15 @@ table, th, td {
   color: black;
 }
 
-.search_results {
+.search_results div {
+  display: flex;
+  margin-left: 60px;
+  padding: 10px;
+  text-align: center;
+  color: black;
+}
+
+.exchanges div {
   display: flex;
   margin-left: 60px;
   padding: 10px;

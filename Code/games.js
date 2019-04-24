@@ -32,12 +32,12 @@ module.exports.request_game = function(req,res,next)
                             else
                                 res.redirect("request.html");
                         });
-                    })
+                    });
 
-                }
+                });
             }
         });
-}
+    }
 }
 
 module.exports.all_games = function(req,res,next)

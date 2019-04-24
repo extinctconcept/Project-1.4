@@ -16,7 +16,7 @@ module.exports.request_game = function(req,res,next)
     }
     else
     {
-        DB.getGamesbyID(query_data.game_id, (result) => {
+        DB.getGamebyID(query_data.game_id, (result) => {
             console.log(result);
             if(result[0] === undefined)
             {

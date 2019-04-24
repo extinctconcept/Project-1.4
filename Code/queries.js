@@ -209,7 +209,7 @@ module.exports.modifyGameExchangeType = (availability_id, game_id, callback) => 
 
 module.exports.viewGamesByUserAndStatus = (username, type, callback) => {
   // note type needs to be 1, 2, or 3
-  pool.query('SELECT * FROM game LEFT JOIN persons ON (game.person_id = persons.person_id) WHERE persons.username = $1 AND game.availability_id = $2 ORDER BY game_id ASC',[username, type], (error, results) => {
+  pool.query('SELECT * FROM game LEFT JOIN persons ON (game.person_id = persons.person_id) LEFT JOIN game_availability AS ga ON (ga.id = game.availability_id) WHERE persons.username = $1 AND game.availability_id = $2 ORDER BY game_id ASC',[username, type], (error, results) => {
     if (error) {
       throw error;
       results = {};
@@ -223,7 +223,7 @@ module.exports.viewGamesByUserAndStatus = (username, type, callback) => {
 
 module.exports.viewGamesByStatus = (type, callback) => {
   // note type needs to be 1, 2, or 3
-  pool.query('SELECT * FROM game LEFT JOIN persons ON (game.person_id = persons.person_id) WHERE game.availability_id = $1 ORDER BY game_id ASC',[type], (error, results) => {
+  pool.query('SELECT * FROM game LEFT JOIN game_availability AS ga ON (ga.id = game.availability_id) WHERE game.availability_id = $1 ORDER BY game_id ASC',[type], (error, results) => {
     if (error) {
       throw error;
       results = {};

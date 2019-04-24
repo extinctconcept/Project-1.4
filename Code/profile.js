@@ -37,16 +37,17 @@ module.exports.get_profile_games = function(req, res, next)
     console.log("Games of: " + sessionID + " " + LOGIN.sessions[sessionID]);
     if(!sessionID || !LOGIN.sessions[sessionID])
     {
+        console.log("no login sending empty json");
         res.send("[]");
     }
     else
     {
         let games;
-        db.getGamesByUser(LOGIN.sessions[sessionID], (result) => {games = result});
-        if(!games)
-        games = [];
-        console.log(games);
-        res.send(JSON.stringify(games));
+        db.getGamesByUser(LOGIN.sessions[sessionID], (result) => {games = result
+            console.log(games);
+            res.status(200);
+            res.send(JSON.stringify(games));
+        });
     }
 }
 
@@ -59,15 +60,50 @@ module.exports.add_profile_games = function(req,res,next)
     var cookies = new COOKIES(req,res);
     sessionID = cookies.get('key');
     console.log("Add game to: " + sessionID + " " + LOGIN.sessions[sessionID]);
-    res.setHeader('Content-Type', 'application/json');
+    console.log(query_data);
+    //res.setHeader('Content-Type', 'application/json');
     if(!sessionID || !LOGIN.sessions[sessionID])
     {
-        res.send("0");
+        EXPRESS.static("html/static/profile.html")(req,res,next);
+        //res.send("0");
     }
     else
     {
         let game_id;
-        db.createGame(LOGIN.sessions[sessionID], title, (result) => {game_id = result;});
-        res.send(JSON.stringify(game_id));
+        db.createGame(LOGIN.sessions[sessionID], title, (result) => {
+            game_id = result;
+            res.redirect("profile.html");
+        });
+        //res.send(JSON.stringify(game_id));
     }
+}
+
+
+module.exports.getprofileexchanges = function(req,res,next)
+{
+    var cookies = new COOKIES(req,res);
+    sessionID = cookies.get('key');
+    if(!sessionID || !LOGIN.sessions[sessionID])
+    {
+
+    }
+    else
+    {
+        db.getUser(LOGIN.sessions[sessionID], (user) =>{
+            db.getExchangebyUserID(user.person_id, (exchanges) =>{
+                if(!exchanges)
+                {
+                    res.status(200);
+                    res.send("[]");
+                }
+                else
+                {
+                    console.log(exchanges);
+                    res.status(200);
+                    res.send(JSON.stringify(exchanges));
+                }
+            })
+        });
+    }
+
 }

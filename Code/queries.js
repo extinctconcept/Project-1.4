@@ -35,6 +35,22 @@ module.exports.getUser = (username, callback) => {
   });
 }
 
+module.exports.getUserbyID = (person_id, callback) => {
+  //module.exports.query_data = URL.parse(request.url, true).query;
+  pool.query('SELECT * FROM persons WHERE person_id = $1', [person_id], (error, results) => {
+  if(error) {
+    callback(undefined);
+      //throw(error)
+  }
+  else
+  {
+    callback(results.rows[0]);
+  }
+  // console.log(results.rows[0]);
+  //response.status(200).json(results.rows)
+});
+}
+
 module.exports.createUser = (password, username, first_name, last_name, email, callback) => {
    pool.query('INSERT INTO persons (password, username, first_name, last_name, email) values ($1, $2, $3, $4, $5)', 
       [password, username, first_name, last_name, email], (error, results) => {
@@ -69,16 +85,30 @@ module.exports.getGamesByUserExchange = (username, callback) => {
 
 // this will pull all games the user has posted
 module.exports.getGamesByUser = (username, callback) => {
-   pool.query('SELECT gm.person_id, gm.game_id, gm.title, gm.player_count, gm.art_url, gm.rating, gm.availability_id, pe.username FROM game AS gm LEFT JOIN persons AS pe ON (gm.person_id = pe.person_id) WHERE pe.username = $1 ORDER BY game_id ASC',[username], (error, results) => {
+   pool.query('SELECT * FROM game LEFT JOIN persons ON (game.person_id = persons.person_id) WHERE persons.username = $1 ORDER BY game_id ASC',[username], (error, results) => {
       if (error) {
+        throw error;
         results = {};
       }
       
-      //console.log(results.rows[0]);
+      console.log(results.rows);
       //returing all rows breaks the test that is looking for a single game
       callback(results.rows);
     })
   }
+
+  module.exports.getGamebyID = (game_id, callback) => {
+    pool.query('SELECT * FROM game WHERE game_id = $1 ORDER BY game_id ASC',[game_id], (error, results) => {
+       if (error) {
+         throw error;
+         results = {};
+       }
+       
+       console.log(results.rows);
+       //returing all rows breaks the test that is looking for a single game
+       callback(results.rows);
+     })
+   }
 
 module.exports.getGames = (callback) => {
    pool.query('SELECT * FROM game ORDER BY game_id ASC', (error, results) => {
@@ -109,7 +139,8 @@ let getPersonId = (username, callback) => {
     }
     else
     {
-      callback(results.row[0].person_id);
+      if(results.rows[0] == undefined) callback(undefined);
+      else callback(results.rows[0].person_id);
     }
     // callback(results.rows
     // console.log(results.rows);
@@ -118,18 +149,24 @@ let getPersonId = (username, callback) => {
 
 module.exports.createGame = (username, title, callback) => {
     let person_id;
-    getPersonId(username, (result) => {person_id = result;});
-    console.log("id is: " + person_id);
-    pool.query('INSERT INTO game (person_id, title) values ($1, $2)', 
-      [person_id, title], (error, results) => {
-      if (error) {
-        results = {};//throw error
-      }
-      //response.status(201).send(`User added with ID: ${result.insertId}`)
-      // callback(results.insertId;
-      // console.log(results.insertId);
-      callback(results.insertId);
-    })
+    getPersonId(username, (result) => {
+      person_id = result;
+      console.log("id is: " + person_id + " " + title);
+      pool.query('INSERT INTO game (person_id, title, availability_id) values ($1, $2, 1)', 
+        [person_id, title], (error, results) => {
+        if (error) {
+          throw error;
+          results = {};//throw error
+        }
+        else
+        {
+          callback(results.insertId);
+        }
+        //response.status(201).send(`User added with ID: ${result.insertId}`)
+        // callback(results.insertId;
+        // console.log(results.insertId);
+      })
+    });
 }
 
 // this should be called when someone wants to borrow a game
@@ -141,8 +178,22 @@ module.exports.createExchange = (owner_id, borrower_id, game_id, callback) => {
     if(error) {
       throw error;
     }
-    // console.log(results.insertId);
-    callback(results.insertId)
+    console.log("Exchange created" + results.insertId);
+    callback(results);
+  })
+}
+
+module.exports.getExchangebyUserID = function(owner_id, callback)
+{
+  pool.query("SELECT * FROM exchange WHERE owner_id = $1", [owner_id],(error, results) =>{
+    if(error)
+    {
+      throw error;
+    }
+    else
+    {
+      callback(results.rows);
+    }
   })
 }
 
@@ -158,6 +209,7 @@ module.exports.deleteExchange = (exchange_id, callback) => {
 }
 
 module.exports.modifyGameExchangeType = (availability_id, game_id, callback) => {
+  // note 1 = availalble || 2 = unavailable ||  3 = pending
   pool.query('UPDATE game AS gm \
               SET availability_id = $1 \
               WHERE game_id = $2',[availability_id, game_id],(error,results) =>{
@@ -167,6 +219,34 @@ module.exports.modifyGameExchangeType = (availability_id, game_id, callback) => 
       // console.log(results);
       callback(results)
     })
+}
+
+module.exports.viewGamesByUserAndStatus = (username, type, callback) => {
+  // note type needs to be 1, 2, or 3
+  pool.query('SELECT * FROM game LEFT JOIN persons ON (game.person_id = persons.person_id) LEFT JOIN game_availability AS ga ON (ga.id = game.availability_id) WHERE persons.username = $1 AND game.availability_id = $2 ORDER BY game_id ASC',[username, type], (error, results) => {
+    if (error) {
+      throw error;
+      results = {};
+    }
+    
+    console.log(results.rows);
+    //returing all rows breaks the test that is looking for a single game
+    callback(results.rows);
+  })
+}
+
+module.exports.viewGamesByStatus = (type, callback) => {
+  // note type needs to be 1, 2, or 3
+  pool.query('SELECT * FROM game LEFT JOIN game_availability AS ga ON (ga.id = game.availability_id) WHERE game.availability_id = $1 ORDER BY game_id ASC',[type], (error, results) => {
+    if (error) {
+      throw error;
+      results = {};
+    }
+    
+    console.log(results.rows);
+    //returing all rows breaks the test that is looking for a single game
+    callback(results.rows);
+  })
 }
 
 /*

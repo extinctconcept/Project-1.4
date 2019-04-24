@@ -33,18 +33,26 @@
 		<script>
 		var data = null;
 		var xhr = new XMLHttpRequest();
-		const DB = require("./queries");
 
-		function Display_Games()
+		function Display_Games(arr)
 		{
-		    let display = document.getElementById("game-display");
-			let arr = DB.getGames();
-		    arr.forEach(element => {
-		        if(element.cover === undefined)
-		            display.innerHTML += "<div class=\"list_item, list_text\">" + element.name + "<div>" + "<button>Borrow</button>";
-		        else
-		            display.innerHTML += "<div class=\"list_item\">" + "<img class= \"list_image\" src='" + element.cover.url + "'>" + "<div class=\"list_text\">" + element.name + "<div>" + "<div>" + "<button>Borrow</button>";
-		    });
+				let display = document.getElementById("search_results");
+				arr.forEach(element => {
+						if(element.art_url === null)
+						{
+								display.innerHTML += "<div class='list_item list_text'>" 
+									+ "<p>" + element.title + "</p>"
+									+ "<a href='requestgame?game_id=" + element.game_id + "'>Request</a>"
+									+ "<div>";
+						}
+						else
+						{
+								display.innerHTML += "<div class='list_item list_text'>"
+									+ "<p>" + element.title + "</p>"
+									+ "<a href='requestgame?game_id=" + element.game_id + "'>Request</a>"
+									+ "<div>";
+						}
+				});
 		}
 
 		xhr.addEventListener("readystatechange", function () {
@@ -55,7 +63,7 @@
 		  }
 		});
 
-		xhr.open("GET", "getprofilegames/");
+		xhr.open("GET", "allgames/");
 
 		xhr.send(data);
 		</script>

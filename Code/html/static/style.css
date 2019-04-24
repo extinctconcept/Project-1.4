@@ -17,20 +17,6 @@ body {
   overflow: hidden;
 }
 
-#rectangle {
-  width: 150px;
-  height: 200px;
-  margin: 10px 10px;
-  background: #dddddd;
-}
-
-.result {
-  display: flex;
-  margin-left: 60px;
-  padding: 10px;
-  text-align: center;
-}
-
 ul {
   list-style-type: none;
   margin: 0;
@@ -267,14 +253,17 @@ table, th, td {
 	 visibility: visible;
 	 box-shadow: 0 3px 7px rgba(0, 0, 0, 0.6);
 }
+
 .list_item {
   margin: 20px;
 }
+
 .list_image {
   display: inline-block;
   padding-right: 20px;
   vertical-align: middle;
 }
+
 .list_text {
   font-size: 20;
   font-weight: bold;
@@ -282,8 +271,33 @@ table, th, td {
   text-align: center;
   vertical-align: middle;
 }
-@@media (max-width: 400px) {
+
+@media (max-width: 400px) {
   #popup_toggle.active ~ .add_game, #popup_toggle:checked ~ .add_game {
 		 left: 0;
 	}
+}
+
+.game-display div {
+  display: flex;
+  margin-left: 60px;
+  padding: 10px;
+  text-align: center;
+  color: black;
+}
+
+.search_results div {
+  display: flex;
+  margin-left: 60px;
+  padding: 10px;
+  text-align: center;
+  color: black;
+}
+
+.exchanges div {
+  display: flex;
+  margin-left: 60px;
+  padding: 10px;
+  text-align: center;
+  color: black;
 }

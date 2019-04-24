@@ -178,8 +178,8 @@ module.exports.createExchange = (owner_id, borrower_id, game_id, callback) => {
     if(error) {
       throw error;
     }
-    // console.log(results.insertId);
-    callback(results.insertId)
+    console.log("Exchange created" + results.insertId);
+    callback(results.insertId);
   })
 }
 

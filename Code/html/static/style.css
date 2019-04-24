@@ -17,29 +17,6 @@ body {
   overflow: hidden;
 }
 
-#rectangle {
-  width: 150px;
-  height: 200px;
-  margin: 10px 10px;
-  background: #dddddd;
-}
-
-.game-display {
-  display: flex;
-  margin-left: 60px;
-  padding: 10px;
-  text-align: center;
-  color: black;
-}
-
-.search_results {
-  display: flex;
-  margin-left: 60px;
-  padding: 10px;
-  text-align: center;
-  color: black;
-}
-
 ul {
   list-style-type: none;
   margin: 0;
@@ -299,4 +276,20 @@ table, th, td {
   #popup_toggle.active ~ .add_game, #popup_toggle:checked ~ .add_game {
 		 left: 0;
 	}
+}
+
+.game-display {
+  display: flex;
+  margin-left: 60px;
+  padding: 10px;
+  text-align: center;
+  color: black;
+}
+
+.search_results {
+  display: flex;
+  margin-left: 60px;
+  padding: 10px;
+  text-align: center;
+  color: black;
 }

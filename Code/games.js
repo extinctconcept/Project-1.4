@@ -24,7 +24,7 @@ module.exports.request_game = function(req,res,next)
             }
             else
             {
-                DB.getUserID(result.person_id,(owner) => {
+                DB.getUserbyID(result.person_id,(owner) => {
                     DB.getUser(LOGIN.sessions[sessionID], (borrower) =>{
 
                         DB.createExchange(owner.person_id,borrower.person_id,query_data.game_id,(result)=>{

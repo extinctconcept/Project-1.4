@@ -24,11 +24,20 @@ body {
   background: #dddddd;
 }
 
-.result {
+.game-display {
   display: flex;
   margin-left: 60px;
   padding: 10px;
   text-align: center;
+  color: black;
+}
+
+.search_results {
+  display: flex;
+  margin-left: 60px;
+  padding: 10px;
+  text-align: center;
+  color: black;
 }
 
 ul {
@@ -290,10 +299,4 @@ table, th, td {
   #popup_toggle.active ~ .add_game, #popup_toggle:checked ~ .add_game {
 		 left: 0;
 	}
-}
-
-div p {
-    font-style: lighter;
-    display: inline-block;
-    text-align: center;
 }

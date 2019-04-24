@@ -35,6 +35,22 @@ module.exports.getUser = (username, callback) => {
   });
 }
 
+module.exports.getUserbyID = (person_id, callback) => {
+  //module.exports.query_data = URL.parse(request.url, true).query;
+  pool.query('SELECT * FROM persons WHERE person_id = $1', [person_id], (error, results) => {
+  if(error) {
+    callback(undefined);
+      //throw(error)
+  }
+  else
+  {
+    callback(results.rows[0]);
+  }
+  // console.log(results.rows[0]);
+  //response.status(200).json(results.rows)
+});
+}
+
 module.exports.createUser = (password, username, first_name, last_name, email, callback) => {
    pool.query('INSERT INTO persons (password, username, first_name, last_name, email) values ($1, $2, $3, $4, $5)', 
       [password, username, first_name, last_name, email], (error, results) => {

@@ -16,26 +16,22 @@ module.exports.request_game = function(req,res,next)
     }
     else
     {
-        DB.getGamebyID(query_data.game_id, (result) => {
-            console.log(result);
-            if(result[0] === undefined)
+        DB.getGamebyID(query_data.game_id, (game) => {
+            console.log("useful quote: " + game);
+            if(game[0] === undefined)
             {
                 res.redirect("index.html");
             }
             else
             {
-                DB.getUserbyID(result.person_id,(owner) => {
-                    console.log(owner);
-                    DB.getUser(LOGIN.sessions[sessionID], (borrower) =>{
-                        console.log(borrower);
-                        DB.createExchange(owner.person_id,borrower.person_id,query_data.game_id,(result)=>{
-                            if(result === undefined)
-                                res.redirect("index.html");
-                            else
-                                res.redirect("request.html");
-                        });
+                game = game[0];
+                DB.getUser(LOGIN.sessions[sessionID], (borrower) =>{
+                    DB.createExchange(game.person_id,borrower.person_id,game.game_id,(result)=>{
+                        if(result === undefined)
+                            res.redirect("index.html");
+                        else
+                            res.redirect("request.html");
                     });
-
                 });
             }
         });

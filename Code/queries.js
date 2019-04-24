@@ -152,7 +152,7 @@ module.exports.createGame = (username, title, callback) => {
     getPersonId(username, (result) => {
       person_id = result;
       console.log("id is: " + person_id + " " + title);
-      pool.query('INSERT INTO game (person_id, title) values ($1, $2)', 
+      pool.query('INSERT INTO game (person_id, title, availability_id) values ($1, $2, 1)', 
         [person_id, title], (error, results) => {
         if (error) {
           throw error;
@@ -178,8 +178,8 @@ module.exports.createExchange = (owner_id, borrower_id, game_id, callback) => {
     if(error) {
       throw error;
     }
-    // console.log(results.insertId);
-    callback(results.insertId)
+    console.log("Exchange created" + results.insertId);
+    callback(results);
   })
 }
 
@@ -195,6 +195,7 @@ module.exports.deleteExchange = (exchange_id, callback) => {
 }
 
 module.exports.modifyGameExchangeType = (availability_id, game_id, callback) => {
+  // note 1 = availalble || 2 = unavailable ||  3 = pending
   pool.query('UPDATE game AS gm \
               SET availability_id = $1 \
               WHERE game_id = $2',[availability_id, game_id],(error,results) =>{
@@ -204,6 +205,34 @@ module.exports.modifyGameExchangeType = (availability_id, game_id, callback) => 
       // console.log(results);
       callback(results)
     })
+}
+
+module.exports.viewGamesByUserAndStatus = (username, type, callback) => {
+  // note type needs to be 1, 2, or 3
+  pool.query('SELECT * FROM game LEFT JOIN persons ON (game.person_id = persons.person_id) WHERE persons.username = $1 AND game.availability_id = $2 ORDER BY game_id ASC',[username, type], (error, results) => {
+    if (error) {
+      throw error;
+      results = {};
+    }
+    
+    console.log(results.rows);
+    //returing all rows breaks the test that is looking for a single game
+    callback(results.rows);
+  })
+}
+
+module.exports.viewGamesByStatus = (type, callback) => {
+  // note type needs to be 1, 2, or 3
+  pool.query('SELECT * FROM game LEFT JOIN persons ON (game.person_id = persons.person_id) WHERE game.availability_id = $1 ORDER BY game_id ASC',[type], (error, results) => {
+    if (error) {
+      throw error;
+      results = {};
+    }
+    
+    console.log(results.rows);
+    //returing all rows breaks the test that is looking for a single game
+    callback(results.rows);
+  })
 }
 
 /*

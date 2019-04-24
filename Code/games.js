@@ -1,5 +1,6 @@
 const DB = require('./queries');
 const URL = require('url');
+const COOKIES = require('cookies');
 const LOGIN = require('./login');
 
 module.exports.request_game = function(req,res,next)

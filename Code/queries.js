@@ -183,6 +183,20 @@ module.exports.createExchange = (owner_id, borrower_id, game_id, callback) => {
   })
 }
 
+module.exports.getExchangebyUserID = function(owner_id, callback)
+{
+  pool.query("SELECT * FROM exchange WHERE owner_id = $1", [owner_id],(error, results) =>{
+    if(error)
+    {
+      throw error;
+    }
+    else
+    {
+      callback(results.rows);
+    }
+  })
+}
+
 // only the owner should be able to do this
 module.exports.deleteExchange = (exchange_id, callback) => {
   pool.query('DELETE FROM exchange WHERE exchange_id = $1', [exchange_id], (error,results) => {

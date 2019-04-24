@@ -77,3 +77,33 @@ module.exports.add_profile_games = function(req,res,next)
         //res.send(JSON.stringify(game_id));
     }
 }
+
+
+module.exports.getprofileexchanges = function(req,res,next)
+{
+    var cookies = new COOKIES(req,res);
+    sessionID = cookies.get('key');
+    if(!sessionID || !LOGIN.sessions[sessionID])
+    {
+
+    }
+    else
+    {
+        db.getUser(LOGIN.sessions[sessionID], (user) =>{
+            db.getExchangebyUserID(user.person_id, (exchanges) =>{
+                if(!exchanges)
+                {
+                    res.status(200);
+                    res.send("[]");
+                }
+                else
+                {
+                    console.log(exchanges);
+                    res.status(200);
+                    res.send(JSON.stringify(exchanges));
+                }
+            })
+        });
+    }
+
+}

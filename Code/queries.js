@@ -179,7 +179,7 @@ module.exports.createExchange = (owner_id, borrower_id, game_id, callback) => {
       throw error;
     }
     console.log("Exchange created" + results.insertId);
-    callback(results.insertId);
+    callback(results);
   })
 }
 

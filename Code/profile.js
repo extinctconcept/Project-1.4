@@ -100,7 +100,7 @@ module.exports.getprofileexchanges = function(req,res,next)
                 {
                     console.log(exchanges);
                     res.status(200);
-                    res.sent(JSON.stringify(exchanges));
+                    res.send(JSON.stringify(exchanges));
                 }
             })
         });
